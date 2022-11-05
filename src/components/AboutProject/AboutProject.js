@@ -27,10 +27,6 @@ function AboutProject() {
               <p className="about-project__title">Front-end</p>
             </div>
           </div>
-          <div className="about-project__visualization">
-
-
-          </div>
         </MainContainer>
       </section>
   )
