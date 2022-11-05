@@ -1,6 +1,6 @@
 import "./MainContainer.css";
 
-function MainContainer({children}) {
+function MainContainer({ children }) {
   return (
     <div className="main-container">
       {children}

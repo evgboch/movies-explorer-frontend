@@ -6,7 +6,7 @@ function Main() {
   return (
     <div className='main'>
       <Promo />
-      {/* <AboutProject /> */}
+      <AboutProject />
     </div>
   )
 }
