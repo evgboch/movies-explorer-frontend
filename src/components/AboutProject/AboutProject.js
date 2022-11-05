@@ -4,7 +4,7 @@ import SectionHeading from "../SectionHeading/SectionHeading";
 
 function AboutProject() {
   return (
-      <div className="about-project">
+      <section className="about-project">
         <MainContainer>
           <SectionHeading>О&nbsp;проекте</SectionHeading>
           <div className="about-project__info">
@@ -32,7 +32,7 @@ function AboutProject() {
 
           </div>
         </MainContainer>
-      </div>
+      </section>
   )
 }
 
