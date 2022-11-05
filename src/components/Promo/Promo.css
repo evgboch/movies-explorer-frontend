@@ -1,0 +1,53 @@
+.promo {
+  background-color: #073042;
+}
+
+.promo__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 75px;
+}
+
+.promo__info {
+  padding-top: 75px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.promo__info-heading {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 640px;
+}
+
+.promo__info-paragraph {
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 36px;
+  margin-bottom: 0;
+  max-width: 310px;
+  opacity: 0.5;
+}
+
+.promo__info-image {
+  width: 310px;
+  height: 304px;
+}
+
+.promo__learn-more {
+  display: block;
+  max-width: 129px;
+  margin-top: 84px;
+  padding: 9px 19px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+  box-sizing: border-box;
+}
