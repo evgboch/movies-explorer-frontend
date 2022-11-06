@@ -69,3 +69,34 @@
   color: #8B8B8B;
   font-weight: 500;
  }
+
+@media screen and (max-width: 1023px) {
+  .about-project {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .about-project__info {
+    margin-bottom: 93px;
+  }
+
+  .about-project__info-heading {
+    margin-bottom: 22px;
+  }
+
+  .about-project__info-paragraph {
+    line-height: 18px;
+  }
+
+  .about-project__backend-container {
+    width: calc(140 / 668 * 100%);
+   }
+
+   .about-project__frontend-container {
+    width: calc(528 / 668 * 100%);
+   }
+}
+
+@media screen and (max-width: 767px) {
+
+}
