@@ -11,7 +11,7 @@ function Promo() {
           <Header />
           <div className="promo__info">
             <div className="promo__text">
-              <h1 className="promo__info-heading">Учебный проект студента факультета Веб&#8209;разработки.</h1>
+              <h1 className="promo__info-heading">Учебный проект студента&nbsp;факультета Веб&#8209;разработки.</h1>
               <p className="promo__info-paragraph">Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его создателя.</p>
             </div>
             <img className="promo__info-image" src={promoImage} alt="Мир веб-разработки" />

@@ -63,3 +63,10 @@
   border-radius: 10px;
   object-fit: contain;
 }
+
+@media screen and (max-width: 767px) {
+  .about-me__photo {
+    max-width: 10px;
+    max-height: 10px;
+  }
+}
