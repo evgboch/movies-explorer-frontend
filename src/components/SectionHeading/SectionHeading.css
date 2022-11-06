@@ -8,3 +8,11 @@
   letter-spacing: -0.04em;
   border-bottom: 1px solid #DADADA;
 }
+
+@media screen and (max-width: 767px) {
+  .section-heading {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 28px;
+  }
+}
