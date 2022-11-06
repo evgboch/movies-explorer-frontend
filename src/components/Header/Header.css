@@ -13,6 +13,12 @@
   height: 38px;
   width: 38px;
   display: block;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.header__logo:hover {
+  opacity: 0.6;
 }
 
 .header__register-link {
@@ -22,6 +28,12 @@
   line-height: 16px;
   color: #ffffff;
   margin-right: 30px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.header__register-link:hover {
+  opacity: 0.6;
 }
 
 .header__login-link {
@@ -33,6 +45,12 @@
   padding: 8px 20px;
   background-color: #3DDC84;
   border-radius: 3px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.header__login-link:hover {
+  opacity: 0.6;
 }
 
 

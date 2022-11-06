@@ -38,6 +38,12 @@
   text-decoration: none;
   color: #ffffff;
   margin-right: 20px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.footer__link:hover {
+  opacity: 0.6;
 }
 
 .footer__link:last-child {

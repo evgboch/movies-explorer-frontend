@@ -4,7 +4,7 @@ import SectionHeading from "../SectionHeading/SectionHeading";
 
 function AboutProject() {
   return (
-      <section className="about-project">
+      <section className="about-project" id="about-project">
         <MainContainer>
           <SectionHeading>О&nbsp;проекте</SectionHeading>
           <div className="about-project__info">

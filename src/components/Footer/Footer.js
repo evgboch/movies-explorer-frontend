@@ -8,8 +8,8 @@ function Footer() {
         <div className="footer__info">
           <p className="footer__copyrights">&copy; 2022. Евгений Бочаров</p>
           <div className="footer__links">
-            <a className="footer__link" href="https://practicum.yandex.ru/">Яндекс.Практикум</a>
-            <a className="footer__link" href="https://github.com/evgboch">Github</a>
+            <a className="footer__link" href="https://practicum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
+            <a className="footer__link" href="https://github.com/evgboch" target="_blank" rel="noreferrer">Github</a>
           </div>
         </div>
       </div>

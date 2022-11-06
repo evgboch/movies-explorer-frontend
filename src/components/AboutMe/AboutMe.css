@@ -49,6 +49,12 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.about-me__link:hover {
+  opacity: 0.6;
 }
 
 .about-me__photo {

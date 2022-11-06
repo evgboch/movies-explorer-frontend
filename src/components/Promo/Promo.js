@@ -17,7 +17,8 @@ function Promo() {
             </div>
             <img className="promo__info-image" src={promoImage} alt="Мир веб-разработки" />
           </div>
-          <Link to="#" className="promo__learn-more">Узнать больше</Link>
+          <a className="promo__learn-more" href="#about-project">Узнать больше</a>
+          {/* <Link to="#" className="promo__learn-more">Узнать больше</Link> */}
         </MainContainer>
       </div>
     </section>
