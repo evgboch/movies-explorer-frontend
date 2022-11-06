@@ -40,10 +40,12 @@
   text-decoration: none;
   padding-bottom: 20px;
   padding-top: 20px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
 }
 
 .portfolio__link:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .portfolio__link-img {

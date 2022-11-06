@@ -1,5 +1,4 @@
 import "./Promo.css"
-import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import MainContainer from "../MainContainer/MainContainer";
 import promoImage from "../../images/promo-image.png";
@@ -18,7 +17,6 @@ function Promo() {
             <img className="promo__info-image" src={promoImage} alt="Мир веб-разработки" />
           </div>
           <a className="promo__learn-more" href="#about-project">Узнать больше</a>
-          {/* <Link to="#" className="promo__learn-more">Узнать больше</Link> */}
         </MainContainer>
       </div>
     </section>
