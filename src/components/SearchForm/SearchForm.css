@@ -23,12 +23,20 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  color: #8B8B8B;
+  color: #FFFFFF;
   outline: none;
 }
 
 .search-form__input:focus {
   border-color: #3DDC84;
+}
+
+.search-form__input::placeholder {
+  color: #8B8B8B;
+}
+
+.search-form__input:-ms-input-placeholder {
+  color: #8B8B8B;
 }
 
 .search-form__submit-button {
