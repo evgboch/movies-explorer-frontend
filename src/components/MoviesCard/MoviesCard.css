@@ -68,6 +68,15 @@
     min-height: 190px;
     max-width: 339px;
   }
+  .card__name {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .card__duration {
+    font-size: 10px;
+    line-height: 1.2;
+  }
 }
 
 @media screen and (max-width: 767px) {
