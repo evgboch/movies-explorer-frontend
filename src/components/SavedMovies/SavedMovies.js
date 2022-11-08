@@ -1,21 +1,21 @@
-import "./Movies.css";
+import "./SavedMovies.css";
 import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function Movies() {
+function SavedMovies() {
   return (
-    <div className="movies-page">
+    <div className="saved-movies-page">
       <MoviesContainer>
         <Header />
         <SearchForm />
-        <MoviesCardList view="movies" />
+        <MoviesCardList />
       </MoviesContainer>
       <Footer />
     </div>
   )
 }
 
-export default Movies;
+export default SavedMovies;

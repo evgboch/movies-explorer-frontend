@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
       <Switch>
         <Route path="/movies">
           <Movies />
+        </Route>
+        <Route path="/saved-movies">
+          <SavedMovies />
         </Route>
         <Route exact path="/">
           <Main />

@@ -52,6 +52,11 @@
 
 .card__icon_delete {
   background-image: url("../../images/delete-button.svg");
+  display: none;
+}
+
+.card:hover .card__icon_delete {
+  display: inline;
 }
 
 .card__duration {
