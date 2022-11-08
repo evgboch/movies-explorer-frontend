@@ -50,6 +50,13 @@
   margin-right: 0;
 }
 
+@media screen and (max-width: 1023px) {
+  .footer__container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .footer {
     padding-bottom: 10px;
@@ -69,6 +76,8 @@
     padding-top: 30px;
     flex-direction: column-reverse;
     align-items: center;
+    font-size: 12px;
+    line-height: 1.25;
   }
 
   .footer__links {
