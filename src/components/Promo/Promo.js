@@ -1,5 +1,4 @@
 import "./Promo.css"
-import Header from "../Header/Header";
 import MainContainer from "../MainContainer/MainContainer";
 import promoImage from "../../images/promo-image.png";
 
@@ -8,7 +7,6 @@ function Promo() {
     <section className="promo">
       <div className="promo__container">
         <MainContainer>
-          <Header />
           <div className="promo__info">
             <div className="promo__text">
               <h1 className="promo__info-heading">Учебный проект студента&nbsp;факультета Веб&#8209;разработки.</h1>

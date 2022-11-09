@@ -1,9 +1,12 @@
 .header {
-  padding-top: 18px;
-  padding-bottom: 18px;
+  padding: 18px 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header_main {
+  background-color: #073042;
 }
 
 .header__logo {
@@ -40,17 +43,40 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
   color: #000000;
   padding: 8px 20px;
   background-color: #3DDC84;
   border-radius: 3px;
   opacity: 1;
   transition: opacity 0.2s linear;
+  box-sizing: border-box;
 }
 
 .header__login-link:hover {
   opacity: 0.6;
 }
 
+@media screen and (max-width: 1023px) {
+  .header{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header{
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .header__register-link {
+    font-size: 10px;
+    margin-right: 14px;
+  }
+
+  .header__login-link {
+    font-size: 10px;
+    padding: 7px 12px;
+  }
+}
 
