@@ -1,7 +1,14 @@
 import "./Header.css";
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Header({ view, isLoggedIn }) {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  function handleMenuClick() {
+    setIsMenuOpen(!isMenuOpen);
+  }
+
   if (!isLoggedIn) {
     return (
       <header className={"header" + ((view === "main") ? " header_main" : "")}>
@@ -20,8 +27,10 @@ function Header({ view, isLoggedIn }) {
             <Link to="#" className="header__movies">Фильмы</Link>
             <Link to="#" className="header__saved-movies">Сохранённые фильмы</Link>
           </div>
+          <div class={"header__menu-button" + (isMenuOpen ? " header__menu-button_open" : "")} onClick={ handleMenuClick }>
+            <div class="header__burger"></div>
+          </div>
           <div className="header__account">
-            {/* <Link to="#" className="header__account-title">Аккаунт</Link> */}
             <p className="header__account-title">Аккаунт</p>
             <div className="header__account__logo"></div>
           </div>
