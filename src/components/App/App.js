@@ -11,11 +11,11 @@ function App() {
     <div className='page'>
       <Switch>
         <Route path="/movies">
-          <Header />
+          <Header isLoggedIn={true} />
           <Movies />
         </Route>
         <Route path="/saved-movies">
-          <Header />
+          <Header isLoggedIn={true} />
           <SavedMovies />
         </Route>
         <Route exact path="/">

@@ -1,8 +1,9 @@
 .header {
-  padding: 18px 70px;
+  padding-left: 70px;
+  padding-right: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .header_main {
@@ -18,13 +19,21 @@
   display: block;
   opacity: 1;
   transition: opacity 0.2s linear;
+  position: absolute;
 }
 
 .header__logo:hover {
   opacity: 0.6;
 }
 
-.header__register-link {
+.header__right-side {
+  margin-right: 0;
+  margin-left: auto;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.header__register {
   text-decoration: none;
   font-weight: 500;
   font-size: 12px;
@@ -35,11 +44,11 @@
   transition: opacity 0.2s linear;
 }
 
-.header__register-link:hover {
+.header__register:hover {
   opacity: 0.6;
 }
 
-.header__login-link {
+.header__login {
   text-decoration: none;
   font-weight: 500;
   font-size: 12px;
@@ -52,8 +61,54 @@
   box-sizing: border-box;
 }
 
-.header__login-link:hover {
+.header__login:hover {
   opacity: 0.6;
+}
+
+.header__mid-side {
+  margin: 0 auto;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.header__movies {
+  margin-right: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.header__saved-movies {
+  margin-left: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.header__account {
+  position: absolute;
+  right: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.header__account-title {
+  margin-right: 13px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.header__account__logo {
+  background-image: url("../../images/account-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #313131;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -69,12 +124,12 @@
     padding-right: 14px;
   }
 
-  .header__register-link {
+  .header__register {
     font-size: 10px;
     margin-right: 14px;
   }
 
-  .header__login-link {
+  .header__login {
     font-size: 10px;
     padding: 7px 12px;
   }
