@@ -1,9 +1,12 @@
 .header {
   padding-left: 70px;
   padding-right: 70px;
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   position: relative;
+  box-sizing: border-box;
 }
 
 .header_main {
@@ -87,30 +90,6 @@
   color: #ffffff;
 }
 
-.header__account {
-  position: absolute;
-  right: 70px;
-  display: flex;
-  align-items: center;
-}
-
-.header__account-title {
-  margin-right: 13px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-}
-
-.header__account__logo {
-  background-image: url("../../images/account-icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #313131;
-  border-radius: 6px;
-  width: 30px;
-  height: 30px;
-}
-
 .header__menu-button {
   margin-left: auto;
   margin-right: 0;
@@ -121,13 +100,14 @@
   width: 44px;
   height: 44px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .header__burger {
   width: 28px;
   height: 3px;
   background: #FFFFFF;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .header__burger::before,
@@ -137,7 +117,7 @@
   width: 28px;
   height: 3px;
   background: #FFFFFF;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .header__burger::before {
@@ -148,17 +128,17 @@
   transform: translateY(10px);
 }
 
-.header__menu-button.header__menu-button_open .header__burger{
-  transform: translateX(50px);
+.header__menu-button.header__menu-button_opened .header__burger{
+  transform: translateX(10px);
   background: transparent;
 }
 
-.header__menu-button.header__menu-button_open .header__burger::before {
-  transform: rotate(-45deg) translate(-35px, -35px);
+.header__menu-button.header__menu-button_opened .header__burger::before {
+  transform: rotate(-45deg) translate(-7px, -7px);
 }
 
-.header__menu-button.header__menu-button_open .header__burger::after {
-  transform: rotate(45deg) translate(-35px, 35px);
+.header__menu-button.header__menu-button_opened .header__burger::after {
+  transform: rotate(45deg) translate(-7px, 7px);
 }
 
 @media screen and (max-width: 1023px) {
@@ -167,8 +147,7 @@
     padding-right: 30px;
   }
 
-  .header__mid-side,
-  .header__account {
+  .header__mid-side {
     display: none;
   }
 
@@ -220,6 +199,4 @@
   .header__burger::after {
     transform: translateY(6.5px);
   }
-
-
 }
