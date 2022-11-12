@@ -8,6 +8,9 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
+import EntryHeader from '../EntryHeader/EntryHeader';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
@@ -32,6 +35,14 @@ function App() {
         <Route path="/profile">
           <Header isLoggedIn={true} onMenuClick={ onNavOpen } />
           <Profile />
+        </Route>
+        <Route path="/signin">
+          <EntryHeader>Рады видеть!</EntryHeader>
+          <Login />
+        </Route>
+        <Route path="/signup">
+          <EntryHeader>Добро пожаловать!</EntryHeader>
+          <Register />
         </Route>
         <Route exact path="/">
           <Header view="main" />

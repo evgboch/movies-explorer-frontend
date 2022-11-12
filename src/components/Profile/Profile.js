@@ -12,8 +12,8 @@ function Profile() {
         <p className="profile__title">E-mail</p>
         <p className="profile__value">pochta@yandex.ru</p>
       </div>
-      <button className="profile__button profile__button_type_edit">Редактировать</button>
-      <button className="profile__button profile__button_type_logout">Выйти из аккаунта</button>
+      <button className="profile__button profile__button_type_edit" type="button">Редактировать</button>
+      <button className="profile__button profile__button_type_logout" type="button">Выйти из аккаунта</button>
     </main>
   )
 }

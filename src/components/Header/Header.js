@@ -17,8 +17,8 @@ function Header({ view, isLoggedIn, onMenuClick }) {
           <div className="header__container">
             <Link to="/" className="header__logo"></Link>
             <div className="header__right-side">
-              <Link to="#" className="header__register">Регистрация</Link>
-              <Link to="#" className="header__login">Войти</Link>
+              <Link to="/signup" className="header__register">Регистрация</Link>
+              <Link to="/signin" className="header__login">Войти</Link>
             </div>
           </div>
       </header>
