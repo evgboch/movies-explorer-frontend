@@ -48,6 +48,17 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.navigation__link:hover {
+  opacity: 0.6;
+}
+
+.navigation__link_active {
+  padding-bottom: 4px;
+  border-bottom: 2px solid #FFFFFF;
 }
 
 @media screen and (max-width: 767px) {
@@ -64,5 +75,8 @@
     bottom: 48px;
   }
 
+  .navigation__link_active {
+    padding-bottom: 7px;
+  }
 }
 

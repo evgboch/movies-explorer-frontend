@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import "./AccountLink.css";
 
 function AccountLink({ cls }) {
   return (
-    <div className={ cls }>
+    <Link className={ cls } to="#">
       <p className="account__title">Аккаунт</p>
       <div className="account__logo"></div>
-    </div>
+    </Link>
   )
 }
 

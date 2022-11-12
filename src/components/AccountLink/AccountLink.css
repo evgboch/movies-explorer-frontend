@@ -1,5 +1,11 @@
 .account {
   align-items: center;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.account:hover {
+  opacity: 0.6;
 }
 
 .account_desktop {
@@ -19,6 +25,8 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  text-decoration: none;
+  color: #FFFFFF;
 }
 
 .account__logo {
