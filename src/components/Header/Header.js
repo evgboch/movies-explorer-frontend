@@ -14,16 +14,19 @@ function Header({ view, isLoggedIn, onMenuClick }) {
   if (!isLoggedIn) {
     return (
       <header className={"header" + ((view === "main") ? " header_main" : "")}>
-          <Link to="/" className="header__logo"></Link>
-          <div className="header__right-side">
-            <Link to="#" className="header__register">Регистрация</Link>
-            <Link to="#" className="header__login">Войти</Link>
+          <div className="header__container">
+            <Link to="/" className="header__logo"></Link>
+            <div className="header__right-side">
+              <Link to="#" className="header__register">Регистрация</Link>
+              <Link to="#" className="header__login">Войти</Link>
+            </div>
           </div>
       </header>
     )
   } else {
     return (
       <header className={"header" + ((view === "main") ? " header_main" : "")}>
+        <div className="header__container">
           <Link to="/" className="header__logo"></Link>
           <div className="header__mid-side">
             <NavLink to="/movies" className="header__movies" activeClassName="header__movies_active">Фильмы</NavLink>
@@ -33,6 +36,7 @@ function Header({ view, isLoggedIn, onMenuClick }) {
             <div className="header__burger"></div>
           </div>
           <AccountLink cls="account account_desktop" />
+        </div>
       </header>
     )
   }
