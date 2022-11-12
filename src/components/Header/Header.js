@@ -1,6 +1,6 @@
 import "./Header.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AccountLink from "../AccountLink/AccountLink";
 
 function Header({ view, isLoggedIn, onMenuClick }) {
@@ -26,8 +26,8 @@ function Header({ view, isLoggedIn, onMenuClick }) {
       <header className={"header" + ((view === "main") ? " header_main" : "")}>
           <Link to="/" className="header__logo"></Link>
           <div className="header__mid-side">
-            <Link to="#" className="header__movies">Фильмы</Link>
-            <Link to="#" className="header__saved-movies">Сохранённые фильмы</Link>
+            <NavLink to="/movies" className="header__movies" activeClassName="header__movies_active">Фильмы</NavLink>
+            <NavLink to="/saved-movies" className="header__saved-movies" activeClassName="header__movies_active">Сохранённые фильмы</NavLink>
           </div>
           <div className={"header__menu-button" + (isMenuOpen ? " header__menu-button_opened" : "")} onClick={ handleMenuClick }>
             <div className="header__burger"></div>
