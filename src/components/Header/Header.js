@@ -3,14 +3,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import AccountLink from "../AccountLink/AccountLink";
 
-function Header({ view, isLoggedIn, onMenuClick }) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  function handleMenuClick() {
-    setIsMenuOpen(!isMenuOpen);
-    onMenuClick();
-  }
-
+function Header({ view, isLoggedIn, onMenuClick, isMenuOpen }) {
   if (!isLoggedIn) {
     return (
       <header className={"header" + ((view === "main") ? " header_main" : "")}>
@@ -32,7 +25,7 @@ function Header({ view, isLoggedIn, onMenuClick }) {
             <NavLink to="/movies" className="header__movies" activeClassName="header__movies_active">Фильмы</NavLink>
             <NavLink to="/saved-movies" className="header__saved-movies" activeClassName="header__movies_active">Сохранённые фильмы</NavLink>
           </div>
-          <div className={"header__menu-button" + (isMenuOpen ? " header__menu-button_opened" : "")} onClick={ handleMenuClick }>
+          <div className={"header__menu-button" + (isMenuOpen ? " header__menu-button_opened" : "")} onClick={ onMenuClick }>
             <div className="header__burger"></div>
           </div>
           <AccountLink cls="account account_desktop" />

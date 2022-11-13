@@ -16,7 +16,7 @@ import Error from '../Error/Error';
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
 
-  function onNavOpen() {
+  function handleMenuClick() {
     setIsNavigationOpen(!isNavigationOpen);
   }
 
@@ -24,17 +24,17 @@ function App() {
     <div className='page'>
       <Switch>
         <Route path="/movies">
-          <Header isLoggedIn={true} onMenuClick={ onNavOpen } />
+          <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
           <Movies />
           <Footer />
         </Route>
         <Route path="/saved-movies">
-          <Header isLoggedIn={true} onMenuClick={ onNavOpen } />
+          <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
           <SavedMovies />
           <Footer />
         </Route>
         <Route path="/profile">
-          <Header isLoggedIn={true} onMenuClick={ onNavOpen } />
+          <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
           <Profile />
         </Route>
         <Route path="/signin">
@@ -54,7 +54,7 @@ function App() {
           <Error />
         </Route>
       </Switch>
-      <Navigation isOpen={ isNavigationOpen } />
+      <Navigation isOpen={ isNavigationOpen } onLinkClick={ handleMenuClick } />
     </div>
   );
 }
