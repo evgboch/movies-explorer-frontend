@@ -28,11 +28,14 @@
 }
 
 .card__icon {
+  padding: 0;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: #313131;
   min-width: 24px;
   min-height: 24px;
   cursor: pointer;
+  border: none;
   border-radius: 50%;
   opacity: 1;
   transition: opacity 0.2s linear;
