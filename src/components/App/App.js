@@ -12,6 +12,7 @@ import EntryHeader from '../EntryHeader/EntryHeader';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Error from '../Error/Error';
+import EmptyPage from '../EmptyPage/EmptyPage';
 
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
@@ -36,6 +37,11 @@ function App() {
         <Route path="/profile">
           <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
           <Profile />
+        </Route>
+        <Route path="/emptypage">
+          <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
+          <EmptyPage />
+          <Footer />
         </Route>
         <Route path="/signin">
           <EntryHeader>Рады видеть!</EntryHeader>
