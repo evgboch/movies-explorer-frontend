@@ -9,7 +9,7 @@ function SearchForm() {
   return (
     <section className="search-form-container">
       <form className="search-form" onSubmit={ handleSubmit }>
-        <input className="search-form__input" type="text" placeholder="Фильм" />
+        <input className="search-form__input" type="text" placeholder="Фильм" required="true" />
         <button className="search-form__submit-button" type="submit">Найти</button>
       </form>
       <FilterCheckbox />
