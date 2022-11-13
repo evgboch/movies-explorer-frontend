@@ -102,6 +102,18 @@
   opacity: 0.6;
 }
 
+@media screen and (max-height: 650px) {
+  .login__submit {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-height: 570px) {
+  .login__submit {
+    margin-top: 50px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .login {
     max-width: 260px;
@@ -120,3 +132,4 @@
     line-height: 1.25;
   }
 }
+

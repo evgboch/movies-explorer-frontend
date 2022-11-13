@@ -107,6 +107,12 @@
   opacity: 0.6;
 }
 
+@media screen and (max-height: 650px) {
+  .register__submit {
+    margin-top: 50px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .register {
     max-width: 260px;
