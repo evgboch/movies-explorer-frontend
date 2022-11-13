@@ -11,6 +11,7 @@ import Navigation from '../Navigation/Navigation';
 import EntryHeader from '../EntryHeader/EntryHeader';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import Error from '../Error/Error';
 
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
@@ -48,6 +49,9 @@ function App() {
           <Header view="main" />
           <Main />
           <Footer />
+        </Route>
+        <Route path="*">
+          <Error />
         </Route>
       </Switch>
       <Navigation isOpen={ isNavigationOpen } />
