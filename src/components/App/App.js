@@ -15,7 +15,7 @@ import Register from '../Register/Register';
 import Error from '../Error/Error';
 import EmptyPage from '../EmptyPage/EmptyPage';
 // import { useFormWithValidation } from "../../utils/Validator.js";
-// import { login } from "../../utils/MainApi";
+import { getUserInfo } from "../../utils/MainApi";
 // import { errorMessages } from "../../utils/constants";
 
 function App() {
@@ -24,6 +24,24 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const history = useHistory();
+
+  React.useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      const token = localStorage.getItem("jwt");
+      getUserInfo(token)
+        .then((res) => {
+          setCurrentUser({
+            email: res.email,
+            name: res.name,
+          });
+          setIsLoggedIn(true);
+          // history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   function handleMenuClick() {
     setIsNavigationOpen(!isNavigationOpen);
