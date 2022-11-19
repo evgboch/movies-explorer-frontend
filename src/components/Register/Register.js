@@ -8,6 +8,7 @@ import { errorMessages } from "../../utils/constants";
 function Register({ setIsLoggedIn, setCurrentUser }) {
   const validation = useFormWithValidation();
   const history = useHistory();
+  const [buttonTitle, setButtonTitle] = React.useState("Зарегистрироваться");
 
   React.useEffect(() => {
     validation.validateName();
@@ -19,6 +20,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setButtonTitle("Регистрация...");
 
     register(validation.inputValues.email, validation.inputValues.password, validation.inputValues.name)
       .then((res) => {
@@ -32,12 +34,14 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
             setIsLoggedIn(true);
             history.push("/movies");
             validation.resetForm();
+            setButtonTitle("Зарегистрироваться");
           })
           .catch((err) => {
             Promise.reject(err);
           });
       })
       .catch((err) => {
+        setButtonTitle("Зарегистрироваться");
         if (err.status === 409) {
           validation.setSubmitError(errorMessages.register.invalidEmail);
         } else {
@@ -113,7 +117,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
         className={"register__submit" + (!validation.isValid ? " register__submit_disabled" : "")}
         type="submit"
         disabled={ validation.isValid ? false : true }>
-          Зарегистрироваться
+          { buttonTitle }
         </button>
       </form>
       <div className="register__container">

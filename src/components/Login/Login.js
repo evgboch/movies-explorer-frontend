@@ -8,6 +8,7 @@ import { errorMessages } from "../../utils/constants";
 function Login({ setIsLoggedIn, setCurrentUser }) {
   const validation = useFormWithValidation();
   const history = useHistory();
+  const [buttonTitle, setButtonTitle] = React.useState("Войти");
 
   React.useEffect(() => {
     validation.validateEmail();
@@ -15,6 +16,7 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setButtonTitle("Вход...");
 
     login(validation.inputValues.email, validation.inputValues.password)
       .then((res) => {
@@ -22,6 +24,7 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
         setIsLoggedIn(true);
         history.push("/movies");
         validation.resetForm();
+        setButtonTitle("Войти");
 
         getUserInfo(res.token)
         .then((user) => {
@@ -32,6 +35,7 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
         })
       })
       .catch((err) => {
+        setButtonTitle("Войти");
         if (err.status === 401) {
           validation.setSubmitError(errorMessages.login.credentials);
         } else {
@@ -88,7 +92,7 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
         className={"login__submit" + (!validation.isValid ? " login__submit_disabled" : "")}
         type="submit"
         disabled={ validation.isValid ? false : true }>
-          Войти
+          { buttonTitle }
         </button>
       </form>
       <div className="login__container">
