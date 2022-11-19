@@ -34,7 +34,6 @@ export function useFormWithValidation() {
   }
 
   const validateName = () => {
-    console.log(nameRegExp.test(inputValues.name));
     if (!nameRegExp.exec(inputValues.name)) {
       setInputErrors({...inputErrors, name: "Имя может содержать только латиницу, кириллицу, пробел или дефис."});
       setIsValid(false);

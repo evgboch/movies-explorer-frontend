@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Header from "../Header/Header";
 import Main from '../Main/Main';
@@ -23,8 +23,16 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
+  const history = useHistory();
+
   function handleMenuClick() {
     setIsNavigationOpen(!isNavigationOpen);
+  }
+
+  function handleSignOut() {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    history.push("/");
   }
 
   return (
@@ -43,7 +51,7 @@ function App() {
           </Route>
           <Route path="/profile">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
-            <Profile />
+            <Profile onSignOut={ handleSignOut } />
           </Route>
           <Route path="/emptypage">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
