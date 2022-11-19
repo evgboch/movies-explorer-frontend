@@ -32,21 +32,21 @@ function App() {
       <div className="page">
         <Switch>
           <Route path="/movies">
-            <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
+            <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <Movies />
             <Footer />
           </Route>
           <Route path="/saved-movies">
-            <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
+            <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <SavedMovies />
             <Footer />
           </Route>
           <Route path="/profile">
-            <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
+            <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <Profile />
           </Route>
           <Route path="/emptypage">
-            <Header isLoggedIn={true} onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
+            <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <EmptyPage />
             <Footer />
           </Route>
@@ -59,7 +59,7 @@ function App() {
             <Register setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } />
           </Route>
           <Route exact path="/">
-            <Header view="main" />
+            <Header view="main" isLoggedIn={ isLoggedIn } />
             <Main />
             <Footer />
           </Route>
