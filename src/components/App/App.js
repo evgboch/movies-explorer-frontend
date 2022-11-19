@@ -56,7 +56,7 @@ function App() {
           </Route>
           <Route path="/signup">
             <EntryHeader>Добро пожаловать!</EntryHeader>
-            <Register />
+            <Register setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } />
           </Route>
           <Route exact path="/">
             <Header view="main" />

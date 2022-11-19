@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { emailRegExp } from "./constants";
+import { emailRegExp, nameRegExp } from "./constants";
 
 export function useFormWithValidation() {
   const [inputValues, setInputValues] = React.useState({});
@@ -28,7 +28,16 @@ export function useFormWithValidation() {
 
   const validateEmail = () => {
     if ((inputValues.email) && (!inputErrors.email) && (!emailRegExp.test(inputValues.email))) {
-      setInputErrors({...inputErrors.email, email: 'Введите домен верхнего уровня. Например, ".ru".'});
+      setInputErrors({...inputErrors, email: 'Введите домен верхнего уровня. Например, ".ru".'});
+      setIsValid(false);
+    }
+  }
+
+  const validateName = () => {
+    console.log(nameRegExp.test(inputValues.name));
+    if (!nameRegExp.exec(inputValues.name)) {
+      setInputErrors({...inputErrors, name: "Имя может содержать только латиницу, кириллицу, пробел или дефис."});
+      setIsValid(false);
     }
   }
 
@@ -40,6 +49,7 @@ export function useFormWithValidation() {
     isValid,
     resetForm,
     validateEmail,
+    validateName,
     submitError,
     setSubmitError
   };

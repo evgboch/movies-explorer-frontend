@@ -7,18 +7,16 @@ function checkResponse(res) {
   return Promise.reject(res);
 }
 
-// `Ошибка: ${res.status}`
-
-// export function register(password, email) {
-//   return fetch(`${BASE_URL}/signup`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({password, email})
-//     })
-//       .then(checkResponse)
-// }
+export function register(email, password, name) {
+  return fetch(`${BASE_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password, name })
+    })
+      .then(checkResponse)
+}
 
 export function login (email, password) {
   return fetch(`${BASE_URL}/signin`, {

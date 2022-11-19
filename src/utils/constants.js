@@ -1,4 +1,5 @@
-const emailRegExp = new RegExp(/[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/);
+const emailRegExp = new RegExp(/[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/i);
+const nameRegExp = new RegExp(/^[a-zа-яё\s]+$/i);
 
 const BASE_URL = 'https://api.evg.nomoredomains.icu';
 
@@ -18,4 +19,4 @@ const errorMessages = {
   serverError: "На сервере произошла ошибка.",
 };
 
-export { emailRegExp, BASE_URL, errorMessages };
+export { emailRegExp, nameRegExp, BASE_URL, errorMessages };
