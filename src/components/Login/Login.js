@@ -1,25 +1,67 @@
 import "./Login.css";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useFormWithValidation } from "../../utils/Validator.js";
+import { login, getUserInfo } from "../../utils/MainApi";
+import { errorMessages } from "../../utils/constants";
 
-function Login() {
+function Login({ setIsLoggedIn, setCurrentUser }) {
+  const validation = useFormWithValidation();
+  const history = useHistory();
+
+  React.useEffect(() => {
+    validation.validateEmail();
+  }, [validation.inputValues.email]);
+
   function handleSubmit(evt) {
     evt.preventDefault();
+
+    login(validation.inputValues.email, validation.inputValues.password)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
+        history.push("/movies");
+        validation.resetForm();
+
+        getUserInfo(res.token)
+        .then((user) => {
+          setCurrentUser(user);
+        })
+        .catch((err) => {
+          Promise.reject(err);
+        })
+      })
+      .catch((err) => {
+        if (err.status === 401) {
+          validation.setSubmitError(errorMessages.login.credentials);
+        } else {
+          validation.setSubmitError(errorMessages.login.commonError);
+        }
+      });
   }
 
   return (
     <main className="login">
-      <form className="login__form" onSubmit={ handleSubmit }>
+      <form noValidate className="login__form" onSubmit={ handleSubmit }>
         <label className="login__form-label" htmlFor="login-email">
           E-mail
-          <input className="login__form-input" id="login-email" required={ true }></input>
-          <span className="login__form-error"></span>
+          <input onChange={ validation.handleChange } value={validation.inputValues.email || ""}
+          className={"login__form-input" + (validation.inputErrors.email ? " login__form-input_error" : "")}
+          id="login-email" name="email" required={ true } type="email" minLength="2" maxLength="30">
+          </input>
+          <span className={"login__form-error" + (validation.inputErrors.email ? " login__form-error_visible" : "")}>{validation.inputErrors.email}</span>
         </label>
         <label className="login__form-label" htmlFor="login-password">
           Пароль
-          <input className="login__form-input" id="login-password" type="password" autoComplete="on" required={ true }></input>
-          <span className="login__form-error"></span>
+          <input onChange={ validation.handleChange }
+          className={"login__form-input" + (validation.inputErrors.password ? " login__form-input_error" : "")}
+          id="login-password" name="password" type="password" autoComplete="on" required={ true } minLength="2" maxLength="30">
+          </input>
+          <span className={"login__form-error" + (validation.inputErrors.password ? " login__form-error_visible" : "")}>{validation.inputErrors.password}</span>
         </label>
-        <button className="login__submit" type="submit">Войти</button>
+        <span className={"login__submit-error" + (validation.submitError ? " login__submit-error_visible" : "")}>{ validation.submitError }</span>
+        <button className={"login__submit" + (!validation.isValid ? " login__submit_disabled" : "")}
+        type="submit" disabled={ validation.isValid ? false : true }>Войти</button>
       </form>
       <div className="login__container">
         <p className="login__question">Ещё не зарегистрированы?</p>
