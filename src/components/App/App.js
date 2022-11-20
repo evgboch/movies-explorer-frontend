@@ -20,8 +20,9 @@ import { getUserInfo } from "../../utils/MainApi";
 
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [savedMovies, setSavedMovies] = React.useState([]);
 
   const history = useHistory();
 
@@ -33,9 +34,10 @@ function App() {
           setCurrentUser({
             email: res.email,
             name: res.name,
+            _id: res._id,
           });
           setIsLoggedIn(true);
-          // history.push("/");
+          history.push("/movies");
         })
         .catch((err) => {
           console.log(err);

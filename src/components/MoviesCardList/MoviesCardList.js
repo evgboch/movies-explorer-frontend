@@ -7,6 +7,9 @@ function MoviesCardList({ view }) {
   const filteredMovies = movies.filter((movie) => {
     const lowerMovieName = movie.nameRU.toLowerCase();
     const lowerMovieReq = localStorage.getItem("movieReq").toLowerCase();
+      if (localStorage.getItem("movieShort") === "true") {
+        return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
+      }
     return lowerMovieName.includes(lowerMovieReq);
   });
 

@@ -7,7 +7,7 @@ function checkResponse(res) {
   return Promise.reject(res);
 }
 
-export function register(email, password, name) {
+function register(email, password, name) {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -18,7 +18,7 @@ export function register(email, password, name) {
       .then(checkResponse)
 }
 
-export function login (email, password) {
+function login(email, password) {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
@@ -29,7 +29,7 @@ export function login (email, password) {
     .then(checkResponse)
 };
 
-export function getUserInfo (token) {
+function getUserInfo(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
@@ -39,4 +39,38 @@ export function getUserInfo (token) {
   })
     .then(checkResponse);
 }
+
+function saveMovie({name, link}) {
+  return fetch(`${BASE_URL}/movies`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      link: link
+    })
+  })
+    .then(checkResponse);
+}
+
+function deleteMovie(movieId) {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+    }
+  })
+    .then(checkResponse);
+}
+
+export {
+  register,
+  login,
+  getUserInfo,
+  saveMovie,
+  deleteMovie,
+};
 

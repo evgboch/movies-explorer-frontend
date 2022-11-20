@@ -27,6 +27,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
         setCurrentUser({
           email: res.email,
           name: res.name,
+          _id: res._id,
         });
         login(validation.inputValues.email, validation.inputValues.password)
           .then((res) => {

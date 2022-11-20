@@ -4,16 +4,18 @@ import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
-// import { loadMovies } from "../../utils/MoviesApi";
-import apiMov from "../../utils/MoviesApi";
+import { loadMovies } from "../../utils/MoviesApi";
+import LoadingError from "../LoadingError/LoadingError";
 
 
 function Movies() {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
 
   function searchMovies() {
-    apiMov.getMovies()
+    loadMovies()
       .then((res) => {
+        setIsError(false);
         // debugger
         localStorage.setItem("movies", JSON.stringify(res));
         // setMovies(res);
@@ -21,7 +23,8 @@ function Movies() {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        setIsLoading(false);
+        setIsError(true);
       })
   }
 
@@ -29,7 +32,8 @@ function Movies() {
     <main className="movies-page">
       <MoviesContainer>
         <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } />
-        {isLoading ? <Preloader /> : <MoviesCardList view="movies" />}
+        {isLoading ? <Preloader /> :
+          (isError ? <LoadingError /> : <MoviesCardList view="movies" />)}
       </MoviesContainer>
     </main>
   )
