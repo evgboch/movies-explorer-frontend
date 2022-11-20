@@ -1,7 +1,8 @@
 const emailRegExp = new RegExp(/[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/i);
 const nameRegExp = new RegExp(/^[a-zа-яё\s]+$/i);
 
-const BASE_URL = 'https://api.evg.nomoredomains.icu';
+const BASE_URL = "https://api.evg.nomoredomains.icu";
+const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
 
 const errorMessages = {
   login: {
@@ -19,4 +20,4 @@ const errorMessages = {
   serverError: "На сервере произошла ошибка.",
 };
 
-export { emailRegExp, nameRegExp, BASE_URL, errorMessages };
+export { emailRegExp, nameRegExp, BASE_URL, MOVIES_URL, errorMessages };
