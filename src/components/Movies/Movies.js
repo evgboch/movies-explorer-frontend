@@ -8,7 +8,7 @@ import { loadMovies } from "../../utils/MoviesApi";
 import LoadingError from "../LoadingError/LoadingError";
 
 
-function Movies() {
+function Movies({ onLike }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
@@ -33,7 +33,7 @@ function Movies() {
       <MoviesContainer>
         <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } />
         {isLoading ? <Preloader /> :
-          (isError ? <LoadingError /> : <MoviesCardList view="movies" />)}
+          (isError ? <LoadingError /> : <MoviesCardList onLike={ onLike } />)}
       </MoviesContainer>
     </main>
   )

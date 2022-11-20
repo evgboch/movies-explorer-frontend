@@ -3,12 +3,12 @@ import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies() {
+function SavedMovies({ savedMovies }) {
   return (
     <main className="saved-movies-page">
       <MoviesContainer>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList savedMovies={ savedMovies } />
       </MoviesContainer>
     </main>
   )

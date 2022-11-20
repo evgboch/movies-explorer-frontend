@@ -15,7 +15,7 @@ import Register from '../Register/Register';
 import Error from '../Error/Error';
 import EmptyPage from '../EmptyPage/EmptyPage';
 // import { useFormWithValidation } from "../../utils/Validator.js";
-import { getUserInfo } from "../../utils/MainApi";
+import { getUserInfo, getSavedMovies, saveMovie } from "../../utils/MainApi";
 // import { errorMessages } from "../../utils/constants";
 
 function App() {
@@ -37,11 +37,21 @@ function App() {
             _id: res._id,
           });
           setIsLoggedIn(true);
-          history.push("/movies");
+          // history.push("/movies");
         })
         .catch((err) => {
           console.log(err);
         });
+
+      getSavedMovies()
+        .then((movies) => {
+          setSavedMovies(movies.reverse());
+          // history.push("/movies");
+          // debugger
+        })
+        .catch((err) => {
+          Promise.reject(err);
+        })
     }
   }, []);
 
@@ -55,18 +65,55 @@ function App() {
     history.push("/");
   }
 
+  function handleLike(
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    // owner,
+    movieId,
+    nameRU,
+    nameEN,
+  ) {
+    // debugger
+    saveMovie({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      thumbnail,
+      // owner,
+      movieId,
+      nameRU,
+      nameEN,
+    })
+      .then((movie) => {
+        setSavedMovies([movie, ...savedMovies]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
         <Switch>
           <Route path="/movies">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
-            <Movies />
+            <Movies onLike={ handleLike } />
             <Footer />
           </Route>
           <Route path="/saved-movies">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
-            <SavedMovies />
+            <SavedMovies savedMovies={ savedMovies } />
             <Footer />
           </Route>
           <Route path="/profile">
@@ -80,7 +127,7 @@ function App() {
           </Route>
           <Route path="/signin">
             <EntryHeader>Рады видеть!</EntryHeader>
-            <Login setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } />
+            <Login setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } setSavedMovies={ setSavedMovies } />
           </Route>
           <Route path="/signup">
             <EntryHeader>Добро пожаловать!</EntryHeader>

@@ -2,10 +2,10 @@ import "./Login.css";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/Validator.js";
-import { login, getUserInfo } from "../../utils/MainApi";
+import { login, getUserInfo, getSavedMovies } from "../../utils/MainApi";
 import { errorMessages } from "../../utils/constants";
 
-function Login({ setIsLoggedIn, setCurrentUser }) {
+function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
   const validation = useFormWithValidation();
   const history = useHistory();
   const [buttonTitle, setButtonTitle] = React.useState("Войти");
@@ -20,6 +20,7 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
 
     login(validation.inputValues.email, validation.inputValues.password)
       .then((res) => {
+        // debugger
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
         history.push("/movies");
@@ -27,12 +28,20 @@ function Login({ setIsLoggedIn, setCurrentUser }) {
         setButtonTitle("Войти");
 
         getUserInfo(res.token)
-        .then((user) => {
-          setCurrentUser(user);
-        })
-        .catch((err) => {
-          Promise.reject(err);
-        })
+          .then((user) => {
+            setCurrentUser(user);
+          })
+          .catch((err) => {
+            Promise.reject(err);
+          });
+
+        getSavedMovies()
+          .then((movies) => {
+            setSavedMovies(movies.reverse());
+          })
+          .catch((err) => {
+            Promise.reject(err);
+          });
       })
       .catch((err) => {
         setButtonTitle("Войти");

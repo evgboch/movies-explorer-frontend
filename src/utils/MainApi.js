@@ -40,7 +40,31 @@ function getUserInfo(token) {
     .then(checkResponse);
 }
 
-function saveMovie({name, link}) {
+function getSavedMovies() {
+  return fetch(`${BASE_URL}/movies`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+    }
+  })
+    .then(checkResponse);
+}
+
+function saveMovie({
+  country,
+  director,
+  duration,
+  year,
+  description,
+  image,
+  trailerLink,
+  thumbnail,
+  // owner,
+  movieId,
+  nameRU,
+  nameEN,
+}) {
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -48,8 +72,18 @@ function saveMovie({name, link}) {
       'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify({
-      name: name,
-      link: link
+      country: country,
+      director: director,
+      duration: duration,
+      year: year,
+      description: description,
+      image: image,
+      trailerLink: trailerLink,
+      thumbnail: thumbnail,
+      // owner: owner,
+      movieId: movieId,
+      nameRU: nameRU,
+      nameEN: nameEN,
     })
   })
     .then(checkResponse);
@@ -70,6 +104,7 @@ export {
   register,
   login,
   getUserInfo,
+  getSavedMovies,
   saveMovie,
   deleteMovie,
 };
