@@ -8,7 +8,7 @@ function SavedMovies({ savedMovies }) {
     <main className="saved-movies-page">
       <MoviesContainer>
         <SearchForm />
-        <MoviesCardList savedMovies={ savedMovies } />
+        <MoviesCardList movies={ savedMovies } />
       </MoviesContainer>
     </main>
   )

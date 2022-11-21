@@ -8,7 +8,7 @@ import { loadMovies } from "../../utils/MoviesApi";
 import LoadingError from "../LoadingError/LoadingError";
 
 
-function Movies({ onLike }) {
+function Movies({ filterMovies, filteredMovies, setFilteredMovies, onLike, onDislike }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
@@ -18,6 +18,7 @@ function Movies({ onLike }) {
         setIsError(false);
         // debugger
         localStorage.setItem("movies", JSON.stringify(res));
+        setFilteredMovies(filterMovies(res));
         // setMovies(res);
         // console.log(movies);
         setIsLoading(false);
@@ -33,7 +34,7 @@ function Movies({ onLike }) {
       <MoviesContainer>
         <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } />
         {isLoading ? <Preloader /> :
-          (isError ? <LoadingError /> : <MoviesCardList onLike={ onLike } />)}
+          (isError ? <LoadingError /> : <MoviesCardList movies={ filteredMovies } onLike={ onLike } onDislike={ onDislike } />)}
       </MoviesContainer>
     </main>
   )

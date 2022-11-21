@@ -1,7 +1,7 @@
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 
-function MoviesCard({ onLike, movie }) {
+function MoviesCard({ onLike, onDislike, movie }) {
   const location = useLocation().pathname;
 
   function handleLike() {
@@ -19,6 +19,10 @@ function MoviesCard({ onLike, movie }) {
       movie.nameRU,
       movie.nameEN,
     );
+  }
+
+  function handleDislike() {
+    onDislike();
   }
 
   return (

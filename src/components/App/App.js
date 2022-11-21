@@ -15,20 +15,27 @@ import Register from '../Register/Register';
 import Error from '../Error/Error';
 import EmptyPage from '../EmptyPage/EmptyPage';
 // import { useFormWithValidation } from "../../utils/Validator.js";
-import { getUserInfo, getSavedMovies, saveMovie } from "../../utils/MainApi";
+import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils/MainApi";
 // import { errorMessages } from "../../utils/constants";
 
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
 
   const history = useHistory();
 
   React.useEffect(() => {
+    getInitialInfo();
+    loadFilteredMovies();
+  }, []);
+
+  function getInitialInfo() {
     if (localStorage.getItem("jwt")) {
       const token = localStorage.getItem("jwt");
+
       getUserInfo(token)
         .then((res) => {
           setCurrentUser({
@@ -47,13 +54,49 @@ function App() {
         .then((movies) => {
           setSavedMovies(movies.reverse());
           // history.push("/movies");
-          // debugger
         })
         .catch((err) => {
           Promise.reject(err);
         })
     }
-  }, []);
+  }
+
+  function loadFilteredMovies() {
+    let filteredMovies = []
+
+    if (localStorage.getItem("movies")) {
+      const movies = JSON.parse(localStorage.getItem("movies"));
+
+      // filteredMovies = movies.filter((movie) => {
+      //   const lowerMovieName = movie.nameRU.toLowerCase();
+      //   const lowerMovieReq = (localStorage.getItem("movieReq") ? localStorage.getItem("movieReq") : "").toLowerCase();
+
+      //   if (localStorage.getItem("movieShort") === "true") {
+      //     return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
+      //   }
+
+      //   return lowerMovieName.includes(lowerMovieReq);
+      // });
+      filteredMovies = filterMovies(movies);
+    }
+
+    setFilteredMovies(filteredMovies);
+  }
+
+  function filterMovies(movies) {
+    const newMovies = movies.filter((movie) => {
+      const lowerMovieName = movie.nameRU.toLowerCase();
+      const lowerMovieReq = (localStorage.getItem("movieReq") ? localStorage.getItem("movieReq") : "").toLowerCase();
+
+      if (localStorage.getItem("movieShort") === "true") {
+        return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
+      }
+
+      return lowerMovieName.includes(lowerMovieReq);
+    });
+
+    return newMovies;
+  }
 
   function handleMenuClick() {
     setIsNavigationOpen(!isNavigationOpen);
@@ -61,6 +104,9 @@ function App() {
 
   function handleSignOut() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("movieShort");
+    localStorage.removeItem("movieReq");
     setIsLoggedIn(false);
     history.push("/");
   }
@@ -102,13 +148,23 @@ function App() {
       });
   }
 
+  function handleDislike(_id) {
+    deleteMovie(_id)
+      .then(() => {
+        const updatedSavedMovies = savedMovies.filter((movie) => {
+          return movie._id !== _id;
+        })
+        setSavedMovies(updatedSavedMovies);
+      })
+  }
+
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
         <Switch>
           <Route path="/movies">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
-            <Movies onLike={ handleLike } />
+            <Movies filterMovies={ filterMovies } filteredMovies={ filteredMovies } setFilteredMovies={ setFilteredMovies } onLike={ handleLike } onDislike={ handleDislike } />
             <Footer />
           </Route>
           <Route path="/saved-movies">
