@@ -42,6 +42,7 @@ export function useFormWithValidation() {
 
   return {
     inputValues,
+    setInputValues,
     handleChange,
     inputErrors,
     setInputErrors,

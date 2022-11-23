@@ -1,9 +1,16 @@
 import "./SearchForm.css";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, setUserReq, validation }) {
   const location = useLocation().pathname;
+
+  React.useEffect(() => {
+    if ((location === "/movies") && localStorage.getItem("movieReq")) {
+      validation.setInputValues({movie: localStorage.getItem("movieReq")});
+    }
+  }, []);
 
   function handleSubmit(evt) {
     evt.preventDefault();
