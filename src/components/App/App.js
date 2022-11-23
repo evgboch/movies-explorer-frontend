@@ -217,7 +217,8 @@ function App() {
         setSavedMovies(updatedSavedMovies);
         setFilteredMovies((state) => {
           delMovie.isLiked = false;
-          return state.map((mov) => mov.id === delMovie.movieId ? delMovie : mov);
+          debugger
+          return state.map((mov) => (mov.id || mov.movieId) === delMovie.movieId ? delMovie : mov);
         });
       })
   }

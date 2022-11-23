@@ -32,10 +32,10 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
       .then((res) => {
         setIsError(false);
         let filteredMovies = filterMovies(res);
-        // localStorage.setItem("movies", JSON.stringify(filteredMovies));
+        localStorage.setItem("movies", JSON.stringify(filteredMovies));
         checkLikes(filteredMovies, savedMovies);
         setFilteredMovies(filteredMovies);
-        localStorage.setItem("movies", JSON.stringify(filteredMovies));
+        // localStorage.setItem("movies", JSON.stringify(filteredMovies));
         setIsLoading(false);
 
 
