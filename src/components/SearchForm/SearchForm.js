@@ -1,14 +1,21 @@
 import "./SearchForm.css";
-import { useFormWithValidation } from "../../utils/Validator.js";
+import { useLocation } from "react-router-dom";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSearch, setIsLoading }) {
-  const validation = useFormWithValidation();
+function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, setUserReq, validation }) {
+  const location = useLocation().pathname;
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    localStorage.setItem("movieReq", validation.inputValues.movie);
-    setIsLoading(true);
+
+    if (location === "/movies") {
+      localStorage.setItem("movieReq", validation.inputValues.movie);
+      setIsLoading(true);
+    } else {
+      setUserReq(validation.inputValues.movie);
+      console.log(validation.inputValues.movie);
+    }
+
     onSearch();
   }
 
@@ -33,7 +40,7 @@ function SearchForm({ onSearch, setIsLoading }) {
           { validation.inputErrors.movie }
         </span>
       </form>
-      <FilterCheckbox />
+      <FilterCheckbox isShort={ isShort } setIsShort={ setIsShort } />
     </section>
   )
 }

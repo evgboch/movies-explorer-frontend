@@ -98,9 +98,6 @@ function App() {
       .then((newMovie) => {
         setSavedMovies([newMovie, ...savedMovies]);
         setFilteredMovies((state) => {
-          console.log(movie);
-          console.log(newMovie);
-          console.log(newMovie.movieId);
           newMovie.isLiked = true;
           return state.map((m) => (m.id || m.movieId) === newMovie.movieId ? newMovie : m);
         });

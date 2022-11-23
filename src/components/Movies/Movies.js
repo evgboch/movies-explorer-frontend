@@ -6,11 +6,12 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import { loadMovies } from "../../utils/MoviesApi";
 import LoadingError from "../LoadingError/LoadingError";
-
+import { useFormWithValidation } from "../../utils/Validator.js";
 
 function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, onLike, onDelete }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
+  const validation = useFormWithValidation();
 
   function filterMovies(movies) {
     const newMovies = Array.from(movies).filter((movie) => {
@@ -59,7 +60,7 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
   return (
     <main className="movies-page">
       <MoviesContainer>
-        <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } />
+        <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } validation={ validation } />
         {isLoading ? <Preloader /> :
           (isError ? <LoadingError /> : <MoviesCardList movies={ filteredMovies } savedMovies={ savedMovies } onLike={ onLike } onDelete={ onDelete } />)}
       </MoviesContainer>

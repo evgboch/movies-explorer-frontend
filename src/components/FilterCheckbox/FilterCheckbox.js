@@ -1,12 +1,23 @@
 import "./FilterCheckbox.css";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-function FilterCheckbox() {
+function FilterCheckbox({ isShort, setIsShort }) {
+  const location = useLocation().pathname;
+
   function handleChange() {
-    if (localStorage.getItem("movieShort") === "true") {
-      localStorage.setItem("movieShort", "false");
+    if (location === "/movies") {
+      if (localStorage.getItem("movieShort") === "true") {
+        localStorage.setItem("movieShort", "false");
+      } else {
+        localStorage.setItem("movieShort", "true");
+      }
     } else {
-      localStorage.setItem("movieShort", "true");
+      if (isShort === true) {
+        setIsShort(false);
+      } else {
+        setIsShort(true);
+      }
     }
   }
 
@@ -15,7 +26,7 @@ function FilterCheckbox() {
       <p className="checkbox__title">Короткометражки</p>
       <input
       onChange={ handleChange }
-      defaultChecked={(localStorage.getItem("movieShort") === "true") ? true : false}
+      defaultChecked={location === "/movies" ? ((localStorage.getItem("movieShort") === "true") ? true : false) : false}
       className="checkbox__input"
       type="checkbox"
       id="switch" />
