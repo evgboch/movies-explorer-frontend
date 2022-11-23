@@ -4,8 +4,10 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, onLike, onDislike }) {
+function MoviesCardList({ movies, savedMovies, onLike, onDelete }) {
   const location = useLocation().pathname;
+  // debugger
+
   // console.log(movies);
 
   // const [moviesList, setMoviesList] = React.useState([]);
@@ -64,11 +66,13 @@ function MoviesCardList({ movies, onLike, onDislike }) {
   //     moviesList = savedMovies;
   // }
 
+
+
   return (
     <section className="movies">
       <ul className="movies__list">
         {movies.map((movie) => {
-          return <MoviesCard key={movie.id || movie._id} onLike={ onLike } onDislike={ onDislike } movie={ movie } />
+          return <MoviesCard key={movie.id || movie._id} onLike={ onLike } onDelete={ onDelete } movie={ movie } savedMovies={ savedMovies } />
         })}
       </ul>
       <button className="movies__button" type="button">Ещё</button>
