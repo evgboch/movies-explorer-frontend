@@ -21,6 +21,7 @@ import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
+  // {name: "Пользователь", email: "E-mail"}
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -239,7 +240,7 @@ function App() {
           </Route>
           <Route path="/profile">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
-            <Profile onSignOut={ handleSignOut } />
+            <Profile onSignOut={ handleSignOut } setCurrentUser={ setCurrentUser } />
           </Route>
           <Route path="/emptypage">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />

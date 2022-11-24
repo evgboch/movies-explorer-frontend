@@ -40,6 +40,18 @@ function getUserInfo(token) {
     .then(checkResponse);
 }
 
+function updateUserInfo(email, name) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: JSON.stringify({ email, name })
+  })
+    .then(checkResponse);
+}
+
 function getSavedMovies() {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
@@ -60,7 +72,6 @@ function saveMovie({
   image,
   trailerLink,
   thumbnail,
-  // owner,
   movieId,
   nameRU,
   nameEN,
@@ -80,7 +91,6 @@ function saveMovie({
       image: image,
       trailerLink: trailerLink,
       thumbnail: thumbnail,
-      // owner: owner,
       movieId: movieId,
       nameRU: nameRU,
       nameEN: nameEN,
@@ -104,6 +114,7 @@ export {
   register,
   login,
   getUserInfo,
+  updateUserInfo,
   getSavedMovies,
   saveMovie,
   deleteMovie,

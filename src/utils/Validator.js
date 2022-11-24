@@ -47,6 +47,7 @@ export function useFormWithValidation() {
     inputErrors,
     setInputErrors,
     isValid,
+    setIsValid,
     resetForm,
     validateEmail,
     validateName,
