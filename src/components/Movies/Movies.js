@@ -11,6 +11,7 @@ import { useFormWithValidation } from "../../utils/Validator.js";
 function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, onLike, onDelete }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
+  const [isEmptySearch, setIsEmptySearch] = React.useState(false);
   const validation = useFormWithValidation();
 
   function filterMovies(movies) {
@@ -32,6 +33,7 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
       .then((res) => {
         setIsError(false);
         let filteredMovies = filterMovies(res);
+        filteredMovies.length === 0 ? setIsEmptySearch(true) : setIsEmptySearch(false);
         localStorage.setItem("movies", JSON.stringify(filteredMovies));
         checkLikes(filteredMovies, savedMovies);
         setFilteredMovies(filteredMovies);
@@ -53,16 +55,18 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
       })
   }
 
-  // console.log(filteredMovies);
-  // console.log(savedMovies);
-
-
   return (
     <main className="movies-page">
       <MoviesContainer>
         <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } validation={ validation } />
         {isLoading ? <Preloader /> :
-          (isError ? <LoadingError /> : <MoviesCardList movies={ filteredMovies } savedMovies={ savedMovies } onLike={ onLike } onDelete={ onDelete } />)}
+          isError ? <LoadingError>Во&nbsp;время запроса произошла ошибка. Возможно, проблема с&nbsp;соединением или сервер недоступен. Подождите немного и&nbsp;попробуйте ещё раз</LoadingError> :
+            isEmptySearch? <LoadingError>Ничего не&nbsp;найдено</LoadingError> :
+              <MoviesCardList
+                movies={ filteredMovies }
+                savedMovies={ savedMovies }
+                onLike={ onLike }
+                onDelete={ onDelete } />}
       </MoviesContainer>
     </main>
   )

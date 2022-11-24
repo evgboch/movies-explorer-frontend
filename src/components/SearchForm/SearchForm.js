@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, setUserReq, validation }) {
+function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, validation }) {
   const location = useLocation().pathname;
 
   React.useEffect(() => {
@@ -18,9 +18,6 @@ function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, setUserReq, v
     if (location === "/movies") {
       localStorage.setItem("movieReq", validation.inputValues.movie);
       setIsLoading(true);
-    } else {
-      setUserReq(validation.inputValues.movie);
-      console.log(validation.inputValues.movie);
     }
 
     onSearch();

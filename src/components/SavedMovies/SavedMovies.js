@@ -3,12 +3,13 @@ import React from "react";
 import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import LoadingError from "../LoadingError/LoadingError";
 import { useFormWithValidation } from "../../utils/Validator.js";
 
 function SavedMovies({ savedMovies, onDelete }) {
   const [isShort, setIsShort] = React.useState(false);
-  const [filteredMovies, setFilteredMovies] = React.useState(savedMovies);
-  const [userReq, setUserReq] = React.useState(null);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [isEmptySearch, setIsEmptySearch] = React.useState(false);
 
   const validation = useFormWithValidation();
 
@@ -17,18 +18,10 @@ function SavedMovies({ savedMovies, onDelete }) {
     setFilteredMovies(savedMovies);
   }, [savedMovies]);
 
-  // console.log(filteredMovies);
-  function loadInitialMovies() {
-    setFilteredMovies(savedMovies);
-  }
-
-  // Array.from(movies).
-
   function filterMovies(movies) {
     const newMovies = movies.filter((movie) => {
       const lowerMovieName = movie.nameRU.toLowerCase();
       const lowerMovieReq = (validation.inputValues.movie ? validation.inputValues.movie : "").toLowerCase();
-      console.log(userReq);
 
       if (isShort === true) {
         return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
@@ -40,15 +33,22 @@ function SavedMovies({ savedMovies, onDelete }) {
   }
 
   function searchMovies() {
-        // let filteredMovies = filterMovies(res);
-        setFilteredMovies(filterMovies(savedMovies));
-        // localStorage.setItem("movies", JSON.stringify(filteredMovies));
+    const filteredMovies = filterMovies(savedMovies);
+    setFilteredMovies(filteredMovies);
+    filteredMovies.length === 0 ? setIsEmptySearch(true) : setIsEmptySearch(false);
   }
+
   return (
     <main className="saved-movies-page">
       <MoviesContainer>
-        <SearchForm onSearch={ searchMovies } isShort={ isShort } setIsShort={ setIsShort } setUserReq={ setUserReq } validation={ validation } />
-        <MoviesCardList movies={ filteredMovies } onDelete={ onDelete } />
+        <SearchForm
+          onSearch={ searchMovies }
+          isShort={ isShort }
+          setIsShort={ setIsShort }
+          validation={ validation }
+        />
+          {isEmptySearch? <LoadingError>Ничего не&nbsp;найдено</LoadingError> :
+            <MoviesCardList movies={ filteredMovies } onDelete={ onDelete } />}
       </MoviesContainer>
     </main>
   )
