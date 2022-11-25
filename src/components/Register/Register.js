@@ -12,10 +12,12 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
 
   React.useEffect(() => {
     validation.validateName();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [validation.inputValues.name]);
 
   React.useEffect(() => {
     validation.validateEmail();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [validation.inputValues.email]);
 
   function handleSubmit(evt) {

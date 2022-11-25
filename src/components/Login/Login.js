@@ -12,6 +12,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
 
   React.useEffect(() => {
     validation.validateEmail();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [validation.inputValues.email]);
 
   function handleSubmit(evt) {

@@ -10,6 +10,7 @@ function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, validation })
     if ((location === "/movies") && localStorage.getItem("movieReq")) {
       validation.setInputValues({movie: localStorage.getItem("movieReq")});
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSubmit(evt) {

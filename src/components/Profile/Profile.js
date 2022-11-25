@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./Profile.css";
 import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";

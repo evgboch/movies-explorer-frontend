@@ -13,6 +13,7 @@ function MoviesCardList({ movies, savedMovies, onLike, onDelete }) {
     if (location === "/movies") {
       countMaxMoreValues();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -29,6 +30,7 @@ function MoviesCardList({ movies, savedMovies, onLike, onDelete }) {
       const newMovies = movies.filter((mov) => movies.indexOf(mov) < maxMoviesLength);
       setMoviesForRender(newMovies);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movies, maxMoviesLength]);
 
   function countMaxMoreValues() {
