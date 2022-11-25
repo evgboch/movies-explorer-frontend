@@ -14,6 +14,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Error from '../Error/Error';
 import EmptyPage from '../EmptyPage/EmptyPage';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // import { useFormWithValidation } from "../../utils/Validator.js";
 import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils/MainApi";
 // import { errorMessages } from "../../utils/constants";
@@ -228,25 +229,25 @@ function App() {
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
         <Switch>
-          <Route path="/movies">
+          <ProtectedRoute path="/movies" isLoggedIn={ isLoggedIn } >
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <Movies filteredMovies={ filteredMovies } setFilteredMovies={ setFilteredMovies } savedMovies={ savedMovies} checkLikes={ checkLikes } onLike={ handleMovieLike } onDelete ={ handleMovieDislike } />
             <Footer />
-          </Route>
-          <Route path="/saved-movies">
+          </ProtectedRoute>
+          <ProtectedRoute path="/saved-movies" isLoggedIn={ isLoggedIn }>
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <SavedMovies savedMovies={ savedMovies } onDelete={ handleMovieDislike } />
             <Footer />
-          </Route>
-          <Route path="/profile">
+          </ProtectedRoute>
+          <ProtectedRoute path="/profile" isLoggedIn={ isLoggedIn }>
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <Profile onSignOut={ handleSignOut } setCurrentUser={ setCurrentUser } />
-          </Route>
-          <Route path="/emptypage">
+          </ProtectedRoute>
+          {/* <Route path="/emptypage">
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <EmptyPage />
             <Footer />
-          </Route>
+          </Route> */}
           <Route path="/signin">
             <EntryHeader>Рады видеть!</EntryHeader>
             <Login setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } setSavedMovies={ setSavedMovies } />
