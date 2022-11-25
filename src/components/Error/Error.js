@@ -12,7 +12,7 @@ function Error() {
     <div className="error">
       <p className="error__status">404</p>
       <p className="error__message">Страница не найдена</p>
-      <button className="error__button" onClick={ handleBackClick }>Назад</button>
+      <button className="error__button" onMouseDown={ handleBackClick }>Назад</button>
     </div>
   )
 }

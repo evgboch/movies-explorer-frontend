@@ -25,7 +25,7 @@ function Header({ view, isLoggedIn, onMenuClick, isMenuOpen }) {
             <NavLink to="/movies" className="header__movies" activeClassName="header__movies_active">Фильмы</NavLink>
             <NavLink to="/saved-movies" className="header__saved-movies" activeClassName="header__movies_active">Сохранённые фильмы</NavLink>
           </div>
-          <div className={"header__menu-button" + (isMenuOpen ? " header__menu-button_opened" : "")} onClick={ onMenuClick }>
+          <div className={"header__menu-button" + (isMenuOpen ? " header__menu-button_opened" : "")} onMouseDown={ onMenuClick }>
             <div className="header__burger"></div>
           </div>
           <AccountLink cls="account account_desktop" />
