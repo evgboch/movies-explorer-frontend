@@ -126,7 +126,6 @@ function App() {
         setSavedMovies(updatedSavedMovies);
         setFilteredMovies((state) => {
           delMovie.isLiked = false;
-          debugger
           return state.map((mov) => (mov.id || mov.movieId) === delMovie.movieId ? delMovie : mov);
         });
       })
