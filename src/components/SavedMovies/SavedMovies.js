@@ -4,7 +4,7 @@ import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import LoadingError from "../LoadingError/LoadingError";
-import { useFormWithValidation } from "../../utils/Validator.js";
+import { useFormWithValidation } from "../../utils/validationHook.js";
 
 function SavedMovies({ savedMovies, onDelete }) {
   const [isShort, setIsShort] = React.useState(false);

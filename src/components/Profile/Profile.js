@@ -1,8 +1,8 @@
 import "./Profile.css";
 import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useFormWithValidation } from "../../utils/Validator.js";
-import { updateUserInfo } from "../../utils/MainApi";
+import { useFormWithValidation } from "../../utils/validationHook.js";
+import { updateUserInfo } from "../../utils/mainApi";
 import { errorMessages } from "../../utils/constants";
 
 function Profile({ onSignOut, setCurrentUser }) {

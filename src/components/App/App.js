@@ -16,7 +16,7 @@ import Error from '../Error/Error';
 import EmptyPage from '../EmptyPage/EmptyPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // import { useFormWithValidation } from "../../utils/Validator.js";
-import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils/MainApi";
+import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils/mainApi";
 // import { errorMessages } from "../../utils/constants";
 
 function App() {

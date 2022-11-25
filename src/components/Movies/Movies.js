@@ -4,9 +4,9 @@ import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
-import { loadMovies } from "../../utils/MoviesApi";
+import { loadMovies } from "../../utils/moviesApi";
 import LoadingError from "../LoadingError/LoadingError";
-import { useFormWithValidation } from "../../utils/Validator.js";
+import { useFormWithValidation } from "../../utils/validationHook.js";
 
 function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, onLike, onDelete }) {
   const [isLoading, setIsLoading] = React.useState(false);

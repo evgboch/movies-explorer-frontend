@@ -1,8 +1,8 @@
 import "./Register.css";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useFormWithValidation } from "../../utils/Validator.js";
-import { login, register } from "../../utils/MainApi";
+import { useFormWithValidation } from "../../utils/validationHook.js";
+import { login, register } from "../../utils/mainApi";
 import { errorMessages } from "../../utils/constants";
 
 function Register({ setIsLoggedIn, setCurrentUser }) {
