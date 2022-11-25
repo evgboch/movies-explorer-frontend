@@ -223,6 +223,9 @@ function App() {
           return state.map((mov) => (mov.id || mov.movieId) === delMovie.movieId ? delMovie : mov);
         });
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
