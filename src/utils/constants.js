@@ -18,6 +18,10 @@ const errorMessages = {
     commonError: "При обновлении профиля произошла ошибка.",
   },
   serverError: "На сервере произошла ошибка.",
+  validation: {
+    email: 'Введите домен верхнего уровня. Например, ".ru".',
+    name: "Имя может содержать только латиницу, кириллицу, пробел или дефис.",
+  }
 };
 
 export { emailRegExp, nameRegExp, BASE_URL, MOVIES_URL, errorMessages };
