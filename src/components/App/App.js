@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Header from "../Header/Header";
 import Main from '../Main/Main';
@@ -243,16 +243,13 @@ function App() {
             <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <Profile onSignOut={ handleSignOut } setCurrentUser={ setCurrentUser } />
           </ProtectedRoute>
-          {/* <Route path="/emptypage">
-            <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
-            <EmptyPage />
-            <Footer />
-          </Route> */}
           <Route path="/signin">
+            {isLoggedIn && <Redirect to="/movies" />}
             <EntryHeader>Рады видеть!</EntryHeader>
             <Login setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } setSavedMovies={ setSavedMovies } />
           </Route>
           <Route path="/signup">
+            {isLoggedIn && <Redirect to="/movies" />}
             <EntryHeader>Добро пожаловать!</EntryHeader>
             <Register setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } />
           </Route>
