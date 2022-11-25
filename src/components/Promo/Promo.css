@@ -1,0 +1,127 @@
+.promo {
+  background-color: #073042;
+}
+
+.promo__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 75px;
+}
+
+.promo__info {
+  padding-top: 75px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.promo__info-heading {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 640px;
+}
+
+.promo__info-paragraph {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  margin-top: 36px;
+  margin-bottom: 0;
+  max-width: 310px;
+  opacity: 0.5;
+}
+
+.promo__info-image {
+  width: 310px;
+  height: 304px;
+}
+
+.promo__learn-more {
+  display: block;
+  max-width: 129px;
+  margin-top: 84px;
+  padding: 9px 19px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.promo__learn-more:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 1023px) {
+  .promo__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .promo__info {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding-top: 140px;
+  }
+
+  .promo__info-heading {
+    margin-top: 48px;
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  .promo__info-paragraph {
+    margin-top: 22px;
+  }
+
+  .promo__info-image {
+    width: 310px;
+    height: 304px;
+  }
+
+  .promo__learn-more {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 92px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .promo__container {
+    padding-bottom: 30px;
+  }
+
+  .promo__info {
+    padding-top: 70px;
+  }
+
+  .promo__info-heading {
+    margin-top: 44px;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -0.04em;
+  }
+
+  .promo__info-paragraph {
+    margin-top: 24px;
+  }
+
+  .promo__info-image {
+    width: 210px;
+    height: 206px;
+  }
+
+  .promo__learn-more {
+    margin-top: 80px;
+  }
+}

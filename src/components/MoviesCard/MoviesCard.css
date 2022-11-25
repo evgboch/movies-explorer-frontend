@@ -1,0 +1,99 @@
+.card {
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.card__cover {
+  object-fit: cover;
+}
+
+.card__container {
+  padding-top: 10px;
+  padding-bottom: 13px;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #424242;
+}
+
+.card__name {
+  margin-right: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 32px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.card__icon {
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #313131;
+  min-width: 24px;
+  min-height: 24px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.card__icon:hover {
+  opacity: 0.6;
+}
+
+.card__icon_liked-heart {
+  background-image: url("../../images/liked-heart.svg");
+}
+
+.card__icon_disliked-heart {
+  background-image: url("../../images/disliked-heart.svg");
+}
+
+.card__icon_delete {
+  background-image: url("../../images/delete-button.svg");
+  display: none;
+}
+
+.card:hover .card__icon_delete {
+  display: inline;
+}
+
+.card__duration {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #8B8B8B;
+}
+
+@media screen and (max-width: 1023px) {
+  .card__cover {
+    min-height: 190px;
+    max-width: 339px;
+  }
+  .card__name {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .card__duration {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__cover {
+    min-height: 168px;
+    max-width: 300px;
+  }
+}
+
+
+
+
