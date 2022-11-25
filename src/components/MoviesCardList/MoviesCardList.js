@@ -6,76 +6,68 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({ movies, savedMovies, onLike, onDelete }) {
   const location = useLocation().pathname;
-  // debugger
+  const [moreValue, setMoreValue] = React.useState(Number);
+  const [maxMoviesLength, setMaxMoviesLength] = React.useState(Number);
+  const [moviesForRender, setMoviesForRender] = React.useState(Array);
 
-  // console.log(movies);
+  React.useEffect(() => {
+    if (location === "/movies") {
+      countMaxMoreValues();
+    }
+  }, []);
 
-  // const [moviesList, setMoviesList] = React.useState([]);
-  // let moviesList = [];
+  React.useEffect(() => {
+    if (location === "/movies") {
+      window.addEventListener("resize", countMaxMoreValues);
+      return () => {
+        window.removeEventListener("resize", countMaxMoreValues);
+      };
+    }
+  }, [location]);
 
-  // React.useEffect(() => {
-  //   if (location === "/movies") {
-  //     // debugger
-  //     filterMovies();
-  //   } else {
-  //     setMoviesList(savedMovies);
-  //   }
-  //   // console.log(savedMovies);
-  // }, [savedMovies]);
+  React.useEffect(() => {
+    if (location === "/movies") {
+      const newMovies = movies.filter((mov) => movies.indexOf(mov) < maxMoviesLength);
+      setMoviesForRender(newMovies);
+    }
+  }, [movies, maxMoviesLength]);
 
-  // function filterMovies() {
-  //   let filteredMovies = []
+  function countMaxMoreValues() {
+    if (window.screen.width > 1023) {
+      setMaxMoviesLength(12);
+      setMoreValue(3);
+    } else if (window.screen.width > 767) {
+      setMaxMoviesLength(8);
+      setMoreValue(2);
+    } else {
+      setMaxMoviesLength(5);
+      setMoreValue(1);
+    }
+  }
 
-  //   if (localStorage.getItem("movies")) {
-  //     const movies = JSON.parse(localStorage.getItem("movies"));
-
-  //     filteredMovies = movies.filter((movie) => {
-  //       const lowerMovieName = movie.nameRU.toLowerCase();
-  //       const lowerMovieReq = (localStorage.getItem("movieReq") ? localStorage.getItem("movieReq") : "").toLowerCase();
-
-  //       if (localStorage.getItem("movieShort") === "true") {
-  //         return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
-  //       }
-
-  //       return lowerMovieName.includes(lowerMovieReq);
-  //     });
-  //   }
-
-  //   setMoviesList(filteredMovies);
-  // }
-
-
-
-
-
-  // if (location === "/movies") {
-  //   const movies = JSON.parse(localStorage.getItem("movies"));
-  //    moviesList = movies.filter((movie) => {
-  //     // movie.isLiked = savedMovies.some((mov) => {
-  //     //   return mov.movieId === movie.id;
-  //     // });
-  //     // console.log(movie.isLiked);
-  //     const lowerMovieName = movie.nameRU.toLowerCase();
-  //     const lowerMovieReq = localStorage.getItem("movieReq").toLowerCase();
-  //       if (localStorage.getItem("movieShort") === "true") {
-  //         return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
-  //       }
-  //     return lowerMovieName.includes(lowerMovieReq);
-  //   });
-  // } else {
-  //     moviesList = savedMovies;
-  // }
-
-
+  function handleMoreClick() {
+    setMaxMoviesLength(maxMoviesLength + moreValue);
+  }
 
   return (
     <section className="movies">
       <ul className="movies__list">
-        {movies.map((movie) => {
-          return <MoviesCard key={movie.id || movie._id} onLike={ onLike } onDelete={ onDelete } movie={ movie } savedMovies={ savedMovies } />
+        {(location === "/movies" ? moviesForRender : movies).map((movie) => {
+          return <MoviesCard
+            key={movie.id || movie._id}
+            onLike={ onLike }
+            onDelete={ onDelete }
+            movie={ movie }
+            savedMovies={ savedMovies } />
         })}
       </ul>
-      <button className="movies__button" type="button">Ещё</button>
+      <button
+        className={"movies__button" + ((location === "/movies") &&
+        (moviesForRender.length < movies.length) ? " movies__button_visible" : "")}
+        type="button"
+        onMouseDown={ handleMoreClick }>
+        Ещё
+      </button>
     </section>
   )
 }
