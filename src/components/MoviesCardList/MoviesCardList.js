@@ -1,6 +1,5 @@
 import "./MoviesCardList.css";
 import React from "react";
-// import moviesData from "../../utils/moviesData";
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 

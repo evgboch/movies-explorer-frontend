@@ -6,7 +6,7 @@ import AccountLink from "../AccountLink/AccountLink";
 function Header({ view, isLoggedIn, onMenuClick, isMenuOpen }) {
   if (!isLoggedIn) {
     return (
-      <header className={"header" + ((view === "main") ? " header_main" : "")}>
+      <header className={ "header" + ((view === "main") ? " header_main" : "") }>
           <div className="header__container">
             <Link to="/" className="header__logo"></Link>
             <div className="header__right-side">

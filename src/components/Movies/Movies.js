@@ -1,4 +1,3 @@
-import "./Movies.css";
 import React from "react";
 import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
@@ -18,11 +17,9 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
     const newMovies = Array.from(movies).filter((movie) => {
       const lowerMovieName = movie.nameRU.toLowerCase();
       const lowerMovieReq = (localStorage.getItem("movieReq") ? localStorage.getItem("movieReq") : "").toLowerCase();
-
       if (localStorage.getItem("movieShort") === "true") {
         return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
       }
-
       return lowerMovieName.includes(lowerMovieReq);
     });
     return newMovies;
@@ -37,17 +34,7 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
         localStorage.setItem("movies", JSON.stringify(filteredMovies));
         checkLikes(filteredMovies, savedMovies);
         setFilteredMovies(filteredMovies);
-        // localStorage.setItem("movies", JSON.stringify(filteredMovies));
         setIsLoading(false);
-
-
-        // debugger
-        // const moviesArray = filterMovies(JSON.stringify(res));
-        // localStorage.setItem("movies", filterMovies(JSON.stringify(res)));
-        // localStorage.setItem("movies", res);
-        // setFilteredMovies(localStorage.getItem("movies"));
-        // setMovies(res);
-        // console.log(movies);
       })
       .catch((err) => {
         setIsLoading(false);

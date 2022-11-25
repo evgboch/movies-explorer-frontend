@@ -25,11 +25,11 @@ function FilterCheckbox({ isShort, setIsShort }) {
     <div className="checkbox">
       <p className="checkbox__title">Короткометражки</p>
       <input
-      onChange={ handleChange }
-      defaultChecked={location === "/movies" ? ((localStorage.getItem("movieShort") === "true") ? true : false) : false}
-      className="checkbox__input"
-      type="checkbox"
-      id="switch" />
+        onChange={ handleChange }
+        defaultChecked={ location === "/movies" ? ((localStorage.getItem("movieShort") === "true") ? true : false) : false }
+        className="checkbox__input"
+        type="checkbox"
+        id="switch" />
       <label className="checkbox__round" htmlFor="switch"></label>
     </div>
   )

@@ -9,9 +9,9 @@ function checkResponse(res) {
 
 function register(email, password, name) {
   return fetch(`${BASE_URL}/signup`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({ email, password, name })
     })
@@ -20,9 +20,9 @@ function register(email, password, name) {
 
 function login(email, password) {
   return fetch(`${BASE_URL}/signin`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password })
   })
@@ -31,10 +31,10 @@ function login(email, password) {
 
 function getUserInfo(token) {
   return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     }
   })
     .then(checkResponse);
@@ -42,10 +42,10 @@ function getUserInfo(token) {
 
 function updateUserInfo(email, name) {
   return fetch(`${BASE_URL}/users/me`, {
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify({ email, name })
   })
@@ -56,8 +56,8 @@ function getSavedMovies() {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     }
   })
     .then(checkResponse);
@@ -79,8 +79,8 @@ function saveMovie({
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify({
       country: country,
@@ -103,8 +103,8 @@ function deleteMovie(movieId) {
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     }
   })
     .then(checkResponse);

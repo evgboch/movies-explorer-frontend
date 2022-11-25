@@ -1,6 +1,6 @@
 import { Redirect, Route } from "react-router-dom";
 
-function ProtectedRoute({isLoggedIn, children}) {
+function ProtectedRoute({ isLoggedIn, children }) {
   return(
     <Route>
       {

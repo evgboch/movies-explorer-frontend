@@ -3,7 +3,7 @@ import "./MainContainer.css";
 function MainContainer({ children }) {
   return (
     <div className="main-container">
-      {children}
+      { children }
     </div>
   )
 }

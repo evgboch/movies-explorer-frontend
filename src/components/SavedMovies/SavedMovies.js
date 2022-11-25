@@ -1,4 +1,3 @@
-import "./SavedMovies.css";
 import React from "react";
 import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import SearchForm from "../SearchForm/SearchForm";
@@ -10,9 +9,7 @@ function SavedMovies({ savedMovies, onDelete }) {
   const [isShort, setIsShort] = React.useState(false);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isEmptySearch, setIsEmptySearch] = React.useState(false);
-
   const validation = useFormWithValidation();
-
 
   React.useEffect(() => {
     setFilteredMovies(savedMovies);
@@ -47,8 +44,8 @@ function SavedMovies({ savedMovies, onDelete }) {
           setIsShort={ setIsShort }
           validation={ validation }
         />
-          {isEmptySearch? <LoadingError>Ничего не&nbsp;найдено</LoadingError> :
-            <MoviesCardList movies={ filteredMovies } onDelete={ onDelete } />}
+        {isEmptySearch? <LoadingError>Ничего не&nbsp;найдено</LoadingError> :
+          <MoviesCardList movies={ filteredMovies } onDelete={ onDelete } />}
       </MoviesContainer>
     </main>
   )

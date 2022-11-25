@@ -4,7 +4,7 @@ import AccountLink from "../AccountLink/AccountLink";
 
 function Navigation({ isOpen, onLinkClick }) {
   return(
-    <nav className={"navigation" + (isOpen ? " navigation_opened" : "")}>
+    <nav className={ "navigation" + (isOpen ? " navigation_opened" : "") }>
       <ul className="navigation__container">
         <li className="navigation__item">
           <NavLink className="navigation__link" activeClassName="navigation__link_active" exact to="/" onMouseDown={ onLinkClick }>Главная</NavLink>

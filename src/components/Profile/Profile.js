@@ -8,7 +8,6 @@ import { errorMessages } from "../../utils/constants";
 function Profile({ onSignOut, setCurrentUser }) {
   const [buttonTitle, setButtonTitle] = React.useState("Редактировать");
   const [isSuccessMsgVisible, setIsSuccessMsgVisible] = React.useState(false);
-
   const currentUser = React.useContext(CurrentUserContext);
   const validation = useFormWithValidation();
 
@@ -65,13 +64,13 @@ function Profile({ onSignOut, setCurrentUser }) {
 
   return (
     <main className="profile">
-      <h2 className="profile__greeting">{"Привет, " + (currentUser ? currentUser.name : "") + "!"}</h2>
+      <h2 className="profile__greeting">{ "Привет, " + (currentUser ? currentUser.name : "") + "!" }</h2>
       <form noValidate className="profile__form" onSubmit={ handleSubmit }>
         <div className="profile__container">
           <label className="profile__form-label " htmlFor="register-name">Имя</label>
           <input
             onChange={ validation.handleChange }
-            value={validation.inputValues.name || ""}
+            value={ validation.inputValues.name || "" }
             className="profile__form-input profile__form-input_type_name"
             id="profile-name"
             name="name"
@@ -82,7 +81,7 @@ function Profile({ onSignOut, setCurrentUser }) {
             maxLength="30">
           </input>
           <span
-            className={"profile__form-error" + (validation.inputErrors.name ? " profile__form-error_visible" : "")}>
+            className={ "profile__form-error" + (validation.inputErrors.name ? " profile__form-error_visible" : "") }>
             { validation.inputErrors.name }
           </span>
         </div>
@@ -90,7 +89,7 @@ function Profile({ onSignOut, setCurrentUser }) {
           <label className="profile__form-label" htmlFor="profile-email">E-mail</label>
           <input
             onChange={ validation.handleChange }
-            value={validation.inputValues.email || ""}
+            value={ validation.inputValues.email || "" }
             className="profile__form-input profile__form-input_type_email"
             id="profile-email"
             name="email"
@@ -100,20 +99,20 @@ function Profile({ onSignOut, setCurrentUser }) {
             maxLength="30">
           </input>
           <span
-            className={"profile__form-error" + (validation.inputErrors.email ? " profile__form-error_visible" : "")}>
+            className={ "profile__form-error" + (validation.inputErrors.email ? " profile__form-error_visible" : "") }>
             { validation.inputErrors.email }
           </span>
         </div>
         <span
-          className={"profile__submit-error" + (validation.submitError ? " profile__submit-error_visible" : "")}>
+          className={ "profile__submit-error" + (validation.submitError ? " profile__submit-error_visible" : "") }>
           { validation.submitError }
         </span>
         <span
-          className={"profile__submit-success" + (isSuccessMsgVisible ? " profile__submit-success_visible" : "")}>
+          className={ "profile__submit-success" + (isSuccessMsgVisible ? " profile__submit-success_visible" : "") }>
           Информация сохранена.
         </span>
         <button
-          className={"profile__button profile__button_type_edit" + (!validation.isValid ? " profile__button_disabled" : "")}
+          className={ "profile__button profile__button_type_edit" + (!validation.isValid ? " profile__button_disabled" : "") }
           type="submit"
           disabled={ validation.isValid ? false : true }>
           { buttonTitle }

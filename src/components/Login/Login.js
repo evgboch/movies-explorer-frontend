@@ -20,7 +20,6 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
 
     login(validation.inputValues.email, validation.inputValues.password)
       .then((res) => {
-        // debugger
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
         history.push("/movies");
@@ -59,48 +58,48 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
         <label className="login__form-label" htmlFor="login-email">
           E-mail
           <input
-          onChange={ validation.handleChange }
-          value={validation.inputValues.email || ""}
-          className={"login__form-input" + (validation.inputErrors.email ? " login__form-input_error" : "")}
-          id="login-email"
-          name="email"
-          required={ true }
-          type="email"
-          minLength="2"
-          maxLength="30">
+            onChange={ validation.handleChange }
+            value={ validation.inputValues.email || "" }
+            className={ "login__form-input" + (validation.inputErrors.email ? " login__form-input_error" : "") }
+            id="login-email"
+            name="email"
+            required={ true }
+            type="email"
+            minLength="2"
+            maxLength="30">
           </input>
           <span
-          className={"login__form-error" + (validation.inputErrors.email ? " login__form-error_visible" : "")}>
-            {validation.inputErrors.email}
+            className={ "login__form-error" + (validation.inputErrors.email ? " login__form-error_visible" : "") }>
+            { validation.inputErrors.email }
           </span>
         </label>
         <label className="login__form-label" htmlFor="login-password">
           Пароль
           <input
-          onChange={ validation.handleChange }
-          value={validation.inputValues.password || ""}
-          className={"login__form-input" + (validation.inputErrors.password ? " login__form-input_error" : "")}
-          id="login-password"
-          name="password"
-          type="password"
-          autoComplete="on"
-          required={ true }
-          minLength="2"
-          maxLength="30">
+            onChange={ validation.handleChange }
+            value={ validation.inputValues.password || "" }
+            className={ "login__form-input" + (validation.inputErrors.password ? " login__form-input_error" : "") }
+            id="login-password"
+            name="password"
+            type="password"
+            autoComplete="on"
+            required={ true }
+            minLength="2"
+            maxLength="30">
           </input>
           <span
-          className={"login__form-error" + (validation.inputErrors.password ? " login__form-error_visible" : "")}>
-            {validation.inputErrors.password}
+            className={ "login__form-error" + (validation.inputErrors.password ? " login__form-error_visible" : "") }>
+            { validation.inputErrors.password }
           </span>
         </label>
         <span
-        className={"login__submit-error" + (validation.submitError ? " login__submit-error_visible" : "")}>
+          className={ "login__submit-error" + (validation.submitError ? " login__submit-error_visible" : "") }>
           { validation.submitError }
         </span>
         <button
-        className={"login__submit" + (!validation.isValid ? " login__submit_disabled" : "")}
-        type="submit"
-        disabled={ validation.isValid ? false : true }>
+          className={ "login__submit" + (!validation.isValid ? " login__submit_disabled" : "") }
+          type="submit"
+          disabled={ validation.isValid ? false : true }>
           { buttonTitle }
         </button>
       </form>
