@@ -1,24 +1,26 @@
 import "./Header.css";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import AccountLink from "../AccountLink/AccountLink";
 
-function Header({ view, isLoggedIn, onMenuClick, isMenuOpen }) {
+function Header({ isLoggedIn, onMenuClick, isMenuOpen }) {
+  const location = useLocation().pathname;
+
   if (!isLoggedIn) {
     return (
-      <header className={ "header" + ((view === "main") ? " header_main" : "") }>
-          <div className="header__container">
-            <Link to="/" className="header__logo"></Link>
-            <div className="header__right-side">
-              <Link to="/signup" className="header__register">Регистрация</Link>
-              <Link to="/signin" className="header__login">Войти</Link>
-            </div>
+      <header className={ "header" + ((location === "/") ? " header_main" : "") }>
+        <div className="header__container">
+          <Link to="/" className="header__logo"></Link>
+          <div className="header__right-side">
+            <Link to="/signup" className="header__register">Регистрация</Link>
+            <Link to="/signin" className="header__login">Войти</Link>
           </div>
+        </div>
       </header>
     )
   } else {
     return (
-      <header className={"header" + ((view === "main") ? " header_main" : "")}>
+      <header className={"header" + ((location === "/") ? " header_main" : "")}>
         <div className="header__container">
           <Link to="/" className="header__logo"></Link>
           <div className="header__mid-side">

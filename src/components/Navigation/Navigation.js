@@ -16,7 +16,7 @@ function Navigation({ isOpen, onLinkClick }) {
           <NavLink className="navigation__link" activeClassName="navigation__link_active" to="/saved-movies" onMouseDown={ onLinkClick }>Сохранённые Фильмы</NavLink>
         </li>
         <li className="navigation__item">
-          <AccountLink cls="account account_tablet" onMouseDown={ onLinkClick } />
+          <AccountLink cls="account account_tablet" onLinkClick={ onLinkClick } />
         </li>
       </ul>
     </nav>

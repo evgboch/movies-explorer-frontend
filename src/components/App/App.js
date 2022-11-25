@@ -169,7 +169,7 @@ function App() {
             <Register setIsLoggedIn={ setIsLoggedIn } setCurrentUser={ setCurrentUser } />
           </Route>
           <Route exact path="/">
-            <Header view="main" isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
+            <Header isLoggedIn={ isLoggedIn } onMenuClick={ handleMenuClick } isMenuOpen={ isNavigationOpen } />
             <Main />
             <Footer />
           </Route>
