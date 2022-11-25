@@ -119,6 +119,19 @@
   visibility: visible;
 }
 
+.profile__submit-success {
+  position: absolute;
+  bottom: 60px;
+  font-size: 11px;
+  line-height: 13px;
+  color: #3DDC84;
+  visibility: hidden;
+}
+
+.profile__submit-success_visible {
+  visibility: visible;
+}
+
 @media screen and (max-width: 1023px) {
   .profile {
     padding-bottom: 269px;

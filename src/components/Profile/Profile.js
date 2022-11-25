@@ -7,6 +7,8 @@ import { errorMessages } from "../../utils/constants";
 
 function Profile({ onSignOut, setCurrentUser }) {
   const [buttonTitle, setButtonTitle] = React.useState("Редактировать");
+  const [isSuccessMsgVisible, setIsSuccessMsgVisible] = React.useState(false);
+
   const currentUser = React.useContext(CurrentUserContext);
   const validation = useFormWithValidation();
 
@@ -22,6 +24,7 @@ function Profile({ onSignOut, setCurrentUser }) {
       validation.validateName();
       checkValuesNotChanged();
     }
+    setIsSuccessMsgVisible(false);
   }, [validation.inputValues.name]);
 
   React.useEffect(() => {
@@ -29,6 +32,7 @@ function Profile({ onSignOut, setCurrentUser }) {
       validation.validateEmail();
       checkValuesNotChanged();
     }
+    setIsSuccessMsgVisible(false);
   }, [validation.inputValues.email]);
 
   function checkValuesNotChanged() {
@@ -46,6 +50,7 @@ function Profile({ onSignOut, setCurrentUser }) {
         setCurrentUser(res);
         validation.setIsValid(false);
         setButtonTitle("Редактировать");
+        setIsSuccessMsgVisible(true);
       })
       .catch((err) => {
         setButtonTitle("Зарегистрироваться");
@@ -102,6 +107,10 @@ function Profile({ onSignOut, setCurrentUser }) {
         <span
           className={"profile__submit-error" + (validation.submitError ? " profile__submit-error_visible" : "")}>
           { validation.submitError }
+        </span>
+        <span
+          className={"profile__submit-success" + (isSuccessMsgVisible ? " profile__submit-success_visible" : "")}>
+          Информация сохранена.
         </span>
         <button
           className={"profile__button profile__button_type_edit" + (!validation.isValid ? " profile__button_disabled" : "")}
