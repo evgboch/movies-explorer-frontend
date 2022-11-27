@@ -16,6 +16,7 @@
 * [Макет](https://disk.yandex.ru/d/SHgECdi3ovAnZA)
 * [Github](https://github.com/evgboch/movies-explorer-frontend)
 * [Pull request](https://github.com/evgboch/movies-explorer-frontend/pull/4)
+* [Последние коммиты в PR](https://github.com/evgboch/movies-explorer-frontend/pull/4#commits-pushed-68e61d1)
 * [Фронтенд](https://evg.nomoredomains.icu/)
 * [Бэкенд](https://api.evg.nomoredomains.icu/)
 
