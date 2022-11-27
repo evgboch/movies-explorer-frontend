@@ -78,7 +78,30 @@ function App() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        if (err.status === 401) {
+          handleSignOut();
+        } else {
+          console.log(err);
+        }
+      });
+  }
+
+  function handleMovieDislike(delMovie) {
+    deleteMovie(delMovie._id)
+      .then(() => {
+        const updatedSavedMovies = savedMovies.filter((mov) => mov.movieId !== (delMovie.movieId || delMovie.id));
+        setSavedMovies(updatedSavedMovies);
+        setFilteredMovies((state) => {
+          delMovie.isLiked = false;
+          return state.map((mov) => (mov.id || mov.movieId) === delMovie.movieId ? delMovie : mov);
+        });
+      })
+      .catch((err) => {
+        if (err.status === 401) {
+          handleSignOut();
+        } else {
+          console.log(err);
+        }
       });
   }
 
@@ -117,22 +140,6 @@ function App() {
     setFilteredMovies([]);
     setSavedMovies([]);
     history.push("/");
-  }
-
-  function handleMovieDislike(delMovie) {
-    deleteMovie(delMovie._id)
-      .then(() => {
-        debugger
-        const updatedSavedMovies = savedMovies.filter((mov) => mov.movieId !== (delMovie.movieId || delMovie.id));
-        setSavedMovies(updatedSavedMovies);
-        setFilteredMovies((state) => {
-          delMovie.isLiked = false;
-          return state.map((mov) => (mov.id || mov.movieId) === delMovie.movieId ? delMovie : mov);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   return (
