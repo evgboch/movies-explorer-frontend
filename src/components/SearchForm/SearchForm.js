@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, validation }) {
+function SearchForm({ isDisabled, onSearch, setIsLoading, isShort, setIsShort, validation }) {
   const location = useLocation().pathname;
 
   React.useEffect(() => {
@@ -13,13 +13,25 @@ function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, validation })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function checkValidRequestAndSearch(setIsLoading) {
+    if ((validation.inputValues.movie !== "") && (validation.inputValues.movie !== undefined)) {
+      if (setIsLoading) {
+        localStorage.setItem("movieReq", validation.inputValues.movie);
+        setIsLoading(true);
+      }
+      onSearch();
+    } else {
+      validation.setInputErrors({movie: "Заполните это поле."});
+    }
+  }
+
   function handleSubmit(evt) {
     evt.preventDefault();
     if (location === "/movies") {
-      localStorage.setItem("movieReq", validation.inputValues.movie);
-      setIsLoading(true);
+      checkValidRequestAndSearch(setIsLoading);
+    } else {
+      checkValidRequestAndSearch();
     }
-    onSearch();
   }
 
   return (
@@ -32,11 +44,12 @@ function SearchForm({ onSearch, setIsLoading, isShort, setIsShort, validation })
           name="movie"
           type="text"
           placeholder="Фильм"
-          required={ true } />
+          required={ true }
+          disabled={ isDisabled } />
         <button
-          className={ "search-form__submit-button" + (!validation.isValid ? " search-form__submit-button_disabled" : "") }
+          className={ "search-form__submit-button" + ((isDisabled) ? " search-form__submit-button_disabled" : "") }
           type="submit"
-          disabled={ validation.isValid ? false : true }>
+          disabled={ (!isDisabled) ? false : true }>
           Найти
         </button>
         <span className={ "search-form__input-error" + (validation.inputErrors.movie ? " search-form__input-error_visible" : "") }>

@@ -11,6 +11,7 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
   const [isEmptySearch, setIsEmptySearch] = React.useState(false);
+  const [isDisabled, setIsDisabled] = React.useState(false);
   const validation = useFormWithValidation();
 
   function filterMovies(movies) {
@@ -26,6 +27,7 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
   }
 
   function searchMovies() {
+    setIsDisabled(true);
     loadMovies()
       .then((res) => {
         setIsError(false);
@@ -35,17 +37,19 @@ function Movies({ filteredMovies, setFilteredMovies, savedMovies, checkLikes, on
         checkLikes(filteredMovies, savedMovies);
         setFilteredMovies(filteredMovies);
         setIsLoading(false);
+        setIsDisabled(false);
       })
       .catch((err) => {
         setIsLoading(false);
         setIsError(true);
+        setIsDisabled(false);
       })
   }
 
   return (
     <main className="movies-page">
       <MoviesContainer>
-        <SearchForm onSearch={ searchMovies } setIsLoading={ setIsLoading } validation={ validation } />
+        <SearchForm isDisabled={ isDisabled } setIsDisabled={isDisabled} onSearch={ searchMovies } setIsLoading={ setIsLoading } validation={ validation } />
         {isLoading ? <Preloader /> :
           isError ? <LoadingError>Во&nbsp;время запроса произошла ошибка. Возможно, проблема с&nbsp;соединением или сервер недоступен. Подождите немного и&nbsp;попробуйте ещё раз</LoadingError> :
             isEmptySearch? <LoadingError>Ничего не&nbsp;найдено</LoadingError> :
