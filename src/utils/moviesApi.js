@@ -10,7 +10,6 @@ export function loadMovies() {
         if(res.ok) {
           return res.json();
         }
-        debugger
         return Promise.reject(res);
       })
 }
