@@ -19,7 +19,8 @@ import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  ///////Исправить!
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
 
@@ -122,7 +123,8 @@ function App() {
   function handleMovieDislike(delMovie) {
     deleteMovie(delMovie._id)
       .then(() => {
-        const updatedSavedMovies = savedMovies.filter((mov) => mov.movieId !== delMovie.movieId);
+        debugger
+        const updatedSavedMovies = savedMovies.filter((mov) => mov.movieId !== (delMovie.movieId || delMovie.id));
         setSavedMovies(updatedSavedMovies);
         setFilteredMovies((state) => {
           delMovie.isLiked = false;
