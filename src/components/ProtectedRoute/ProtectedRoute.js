@@ -4,7 +4,7 @@ function ProtectedRoute({ isLoggedIn, children }) {
   return(
     <Route>
       {
-        () => isLoggedIn === true ? children : <Redirect to="./" />
+        () => isLoggedIn === false ? <Redirect to="./" /> : children
       }
     </Route>
   )

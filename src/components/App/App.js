@@ -19,8 +19,7 @@ import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
-  ///////Исправить!
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(null);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
 
