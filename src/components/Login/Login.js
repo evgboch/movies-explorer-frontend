@@ -3,12 +3,12 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/validationHook.js";
 import { login, getUserInfo, getSavedMovies } from "../../utils/mainApi";
-import { errorMessages } from "../../utils/constants";
+import { ERROR_MESSAGES, ERROR_STATUSES, LOCAL_STORAGE, SUBMIT_BTN_TITLES } from "../../utils/constants";
 
 function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
   const validation = useFormWithValidation();
   const history = useHistory();
-  const [buttonTitle, setButtonTitle] = React.useState("Войти");
+  const [buttonTitle, setButtonTitle] = React.useState(SUBMIT_BTN_TITLES.login.static);
   const [isDisabled, setIsDisabled] = React.useState(false);
 
   React.useEffect(() => {
@@ -18,16 +18,16 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setButtonTitle("Вход...");
+    setButtonTitle(SUBMIT_BTN_TITLES.login.inProgress);
     setIsDisabled(true);
 
     login(validation.inputValues.email, validation.inputValues.password)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        localStorage.setItem(LOCAL_STORAGE.token, res.token);
         setIsLoggedIn(true);
         history.push("/movies");
         validation.resetForm();
-        setButtonTitle("Войти");
+        setButtonTitle(SUBMIT_BTN_TITLES.login.static);
         setIsDisabled(false);
 
         getUserInfo(res.token)
@@ -47,12 +47,12 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
           });
       })
       .catch((err) => {
-        setButtonTitle("Войти");
+        setButtonTitle(SUBMIT_BTN_TITLES.login.static);
         setIsDisabled(false);
-        if (err.status === 401) {
-          validation.setSubmitError(errorMessages.login.credentials);
+        if (err.status === ERROR_STATUSES.unauthorized) {
+          validation.setSubmitError(ERROR_MESSAGES.login.credentials);
         } else {
-          validation.setSubmitError(errorMessages.login.commonError);
+          validation.setSubmitError(ERROR_MESSAGES.login.commonError);
         }
       });
   }

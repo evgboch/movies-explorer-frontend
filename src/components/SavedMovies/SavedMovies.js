@@ -4,6 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import LoadingError from "../LoadingError/LoadingError";
 import { useFormWithValidation } from "../../utils/validationHook.js";
+import { ERROR_MESSAGES, SHORT_FILM_DURATION } from "../../utils/constants";
 
 function SavedMovies({ savedMovies, onDelete }) {
   const [isShort, setIsShort] = React.useState(false);
@@ -21,7 +22,7 @@ function SavedMovies({ savedMovies, onDelete }) {
       const lowerMovieReq = (validation.inputValues.movie ? validation.inputValues.movie : "").toLowerCase();
 
       if (isShort === true) {
-        return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= 40);
+        return lowerMovieName.includes(lowerMovieReq) && (movie.duration <= SHORT_FILM_DURATION);
       }
 
       return lowerMovieName.includes(lowerMovieReq);
@@ -44,7 +45,7 @@ function SavedMovies({ savedMovies, onDelete }) {
           setIsShort={ setIsShort }
           validation={ validation }
         />
-        {isEmptySearch? <LoadingError>Ничего не&nbsp;найдено</LoadingError> :
+        {isEmptySearch? <LoadingError>{ ERROR_MESSAGES.loading.emptyMoviesList }</LoadingError> :
           <MoviesCardList movies={ filteredMovies } onDelete={ onDelete } />}
       </MoviesContainer>
     </main>

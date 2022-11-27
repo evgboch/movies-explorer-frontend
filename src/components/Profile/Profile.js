@@ -4,10 +4,10 @@ import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormWithValidation } from "../../utils/validationHook.js";
 import { updateUserInfo } from "../../utils/mainApi";
-import { errorMessages } from "../../utils/constants";
+import { ERROR_MESSAGES, ERROR_STATUSES, SUBMIT_BTN_TITLES } from "../../utils/constants";
 
 function Profile({ onSignOut, setCurrentUser }) {
-  const [buttonTitle, setButtonTitle] = React.useState("Редактировать");
+  const [buttonTitle, setButtonTitle] = React.useState(SUBMIT_BTN_TITLES.edit.static);
   const [isSuccessMsgVisible, setIsSuccessMsgVisible] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
   const validation = useFormWithValidation();
@@ -44,21 +44,21 @@ function Profile({ onSignOut, setCurrentUser }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    setButtonTitle("Редактирование...");
+    setButtonTitle(SUBMIT_BTN_TITLES.edit.inProgress);
     updateUserInfo(validation.inputValues.email, validation.inputValues.name)
       .then((res) => {
         setCurrentUser(res);
         validation.setIsValid(false);
-        setButtonTitle("Редактировать");
+        setButtonTitle(SUBMIT_BTN_TITLES.edit.static);
         setIsSuccessMsgVisible(true);
       })
       .catch((err) => {
-        setButtonTitle("Зарегистрироваться");
+        setButtonTitle(SUBMIT_BTN_TITLES.edit.static);
 
-        if (err.status === 409) {
-          validation.setSubmitError(errorMessages.register.invalidEmail);
+        if (err.status === ERROR_STATUSES.conflict) {
+          validation.setSubmitError(ERROR_MESSAGES.register.invalidEmail);
         } else {
-          validation.setSubmitError(errorMessages.register.commonError);
+          validation.setSubmitError(ERROR_MESSAGES.register.commonError);
         }
       });
   }

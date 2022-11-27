@@ -1,4 +1,4 @@
-import { BASE_URL } from "./constants";
+import { BASE_URL, LOCAL_STORAGE } from "./constants";
 
 function checkResponse(res) {
   if(res.ok) {
@@ -45,7 +45,7 @@ function updateUserInfo(email, name) {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      "Authorization": `Bearer ${localStorage.getItem(LOCAL_STORAGE.token)}`,
     },
     body: JSON.stringify({ email, name })
   })
@@ -57,7 +57,7 @@ function getSavedMovies() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      "Authorization": `Bearer ${localStorage.getItem(LOCAL_STORAGE.token)}`,
     }
   })
     .then(checkResponse);
@@ -80,7 +80,7 @@ function saveMovie({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      "Authorization": `Bearer ${localStorage.getItem(LOCAL_STORAGE.token)}`,
     },
     body: JSON.stringify({
       country: country,
@@ -104,7 +104,7 @@ function deleteMovie(movieId) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      "Authorization": `Bearer ${localStorage.getItem(LOCAL_STORAGE.token)}`,
     }
   })
     .then(checkResponse);

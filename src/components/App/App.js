@@ -15,6 +15,7 @@ import Register from "../Register/Register";
 import Error from "../Error/Error";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getUserInfo, getSavedMovies, saveMovie, deleteMovie } from "../../utils/mainApi";
+import { ERROR_STATUSES, LOCAL_STORAGE } from "../../utils/constants";
 
 function App() {
   const [isNavigationOpen, setIsNavigationOpen] = React.useState(false);
@@ -31,8 +32,8 @@ function App() {
   }, []);
 
   function getInitialInfo() {
-    if (localStorage.getItem("jwt")) {
-      const token = localStorage.getItem("jwt");
+    if (localStorage.getItem(LOCAL_STORAGE.token)) {
+      const token = localStorage.getItem(LOCAL_STORAGE.token);
       getUserInfo(token)
         .then((res) => {
           setCurrentUser({
@@ -80,7 +81,7 @@ function App() {
         });
       })
       .catch((err) => {
-        if (err.status === 401) {
+        if (err.status === ERROR_STATUSES.unauthorized) {
           handleSignOut();
         } else {
           console.log(err);
@@ -99,7 +100,7 @@ function App() {
         });
       })
       .catch((err) => {
-        if (err.status === 401) {
+        if (err.status === ERROR_STATUSES.unauthorized) {
           handleSignOut();
         } else {
           console.log(err);
@@ -121,8 +122,8 @@ function App() {
 
   function loadInitialMovies(savedMovies) {
     let filteredMovies = []
-    if (localStorage.getItem("movies")) {
-      filteredMovies = JSON.parse(localStorage.getItem("movies"));
+    if (localStorage.getItem(LOCAL_STORAGE.movies.list)) {
+      filteredMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE.movies.list));
       checkLikes(filteredMovies, savedMovies);
       setFilteredMovies(filteredMovies);
     }
@@ -133,10 +134,10 @@ function App() {
   }
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("movies");
-    localStorage.removeItem("movieShort");
-    localStorage.removeItem("movieReq");
+    localStorage.removeItem(LOCAL_STORAGE.token);
+    localStorage.removeItem(LOCAL_STORAGE.movies.list);
+    localStorage.removeItem(LOCAL_STORAGE.movies.short);
+    localStorage.removeItem(LOCAL_STORAGE.movies.request);
     setIsLoggedIn(false);
     setCurrentUser(null);
     setFilteredMovies([]);

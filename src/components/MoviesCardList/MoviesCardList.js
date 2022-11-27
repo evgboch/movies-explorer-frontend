@@ -2,6 +2,7 @@ import "./MoviesCardList.css";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { MOVIES_LIST_CONSTANTS } from "../../utils/constants";
 
 function MoviesCardList({ movies, savedMovies, onLike, onDelete }) {
   const location = useLocation().pathname;
@@ -34,15 +35,15 @@ function MoviesCardList({ movies, savedMovies, onLike, onDelete }) {
   }, [movies, maxMoviesLength]);
 
   function countMaxMoreValues() {
-    if (window.screen.width > 1023) {
-      setMaxMoviesLength(12);
-      setMoreValue(3);
-    } else if (window.screen.width > 767) {
-      setMaxMoviesLength(8);
-      setMoreValue(2);
+    if (window.screen.width >= MOVIES_LIST_CONSTANTS.width.desktop) {
+      setMaxMoviesLength(MOVIES_LIST_CONSTANTS.maxListLenght.desktop);
+      setMoreValue(MOVIES_LIST_CONSTANTS.moreValue.desktop);
+    } else if (window.screen.width >= MOVIES_LIST_CONSTANTS.width.tablet) {
+      setMaxMoviesLength(MOVIES_LIST_CONSTANTS.maxListLenght.tablet);
+      setMoreValue(MOVIES_LIST_CONSTANTS.moreValue.tablet);
     } else {
-      setMaxMoviesLength(5);
-      setMoreValue(1);
+      setMaxMoviesLength(MOVIES_LIST_CONSTANTS.maxListLenght.mobile);
+      setMoreValue(MOVIES_LIST_CONSTANTS.moreValue.mobile);
     }
   }
 

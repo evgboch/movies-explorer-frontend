@@ -2,13 +2,14 @@ import "./SearchForm.css";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { ERROR_MESSAGES, LOCAL_STORAGE } from "../../utils/constants";
 
 function SearchForm({ isDisabled, onSearch, setIsLoading, isShort, setIsShort, validation }) {
   const location = useLocation().pathname;
 
   React.useEffect(() => {
-    if ((location === "/movies") && localStorage.getItem("movieReq")) {
-      validation.setInputValues({movie: localStorage.getItem("movieReq")});
+    if ((location === "/movies") && localStorage.getItem(LOCAL_STORAGE.movies.request)) {
+      validation.setInputValues({movie: localStorage.getItem(LOCAL_STORAGE.movies.request)});
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -16,12 +17,12 @@ function SearchForm({ isDisabled, onSearch, setIsLoading, isShort, setIsShort, v
   function checkValidRequestAndSearch(setIsLoading) {
     if ((validation.inputValues.movie !== "") && (validation.inputValues.movie !== undefined)) {
       if (setIsLoading) {
-        localStorage.setItem("movieReq", validation.inputValues.movie);
+        localStorage.setItem(LOCAL_STORAGE.movies.request, validation.inputValues.movie);
         setIsLoading(true);
       }
       onSearch();
     } else {
-      validation.setInputErrors({movie: "Заполните это поле."});
+      validation.setInputErrors({ movie: ERROR_MESSAGES.emptySearchForm });
     }
   }
 

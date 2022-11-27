@@ -3,12 +3,12 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/validationHook.js";
 import { login, register } from "../../utils/mainApi";
-import { errorMessages } from "../../utils/constants";
+import { ERROR_MESSAGES, ERROR_STATUSES, LOCAL_STORAGE, SUBMIT_BTN_TITLES } from "../../utils/constants";
 
 function Register({ setIsLoggedIn, setCurrentUser }) {
   const validation = useFormWithValidation();
   const history = useHistory();
-  const [buttonTitle, setButtonTitle] = React.useState("Зарегистрироваться");
+  const [buttonTitle, setButtonTitle] = React.useState(SUBMIT_BTN_TITLES.register.static);
   const [isDisabled, setIsDisabled] = React.useState(false);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setButtonTitle("Регистрация...");
+    setButtonTitle(SUBMIT_BTN_TITLES.register.inProgress);
     setIsDisabled(true);
 
     register(validation.inputValues.email, validation.inputValues.password, validation.inputValues.name)
@@ -35,11 +35,11 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
         });
         login(validation.inputValues.email, validation.inputValues.password)
           .then((res) => {
-            localStorage.setItem("jwt", res.token);
+            localStorage.setItem(LOCAL_STORAGE.token, res.token);
             setIsLoggedIn(true);
             history.push("/movies");
             validation.resetForm();
-            setButtonTitle("Зарегистрироваться");
+            setButtonTitle(SUBMIT_BTN_TITLES.register.static);
             setIsDisabled(false);
           })
           .catch((err) => {
@@ -47,12 +47,12 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
           });
       })
       .catch((err) => {
-        setButtonTitle("Зарегистрироваться");
+        setButtonTitle(SUBMIT_BTN_TITLES.register.static);
         setIsDisabled(false);
-        if (err.status === 409) {
-          validation.setSubmitError(errorMessages.register.invalidEmail);
+        if (err.status === ERROR_STATUSES.conflict) {
+          validation.setSubmitError(ERROR_MESSAGES.register.invalidEmail);
         } else {
-          validation.setSubmitError(errorMessages.register.commonError);
+          validation.setSubmitError(ERROR_MESSAGES.register.commonError);
         }
       });
   }

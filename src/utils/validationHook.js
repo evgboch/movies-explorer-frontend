@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
-import { emailRegExp, nameRegExp } from "./constants";
-import { errorMessages } from "./constants";
+import { REG_EXPS, ERROR_MESSAGES } from "./constants";
 
 export function useFormWithValidation() {
   const [inputValues, setInputValues] = React.useState({});
@@ -28,15 +27,15 @@ export function useFormWithValidation() {
   );
 
   const validateEmail = () => {
-    if ((inputValues.email) && (!inputErrors.email) && (!emailRegExp.test(inputValues.email))) {
-      setInputErrors({ ...inputErrors, email: errorMessages.validation.email });
+    if ((inputValues.email) && (!inputErrors.email) && (!REG_EXPS.email.test(inputValues.email))) {
+      setInputErrors({ ...inputErrors, email: ERROR_MESSAGES.validation.email });
       setIsValid(false);
     }
   }
 
   const validateName = () => {
-    if (!nameRegExp.exec(inputValues.name)) {
-      setInputErrors({ ...inputErrors, name: errorMessages.validation.name });
+    if (!REG_EXPS.name.exec(inputValues.name)) {
+      setInputErrors({ ...inputErrors, name: ERROR_MESSAGES.validation.name });
       setIsValid(false);
     }
   }
