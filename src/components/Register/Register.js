@@ -9,6 +9,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
   const validation = useFormWithValidation();
   const history = useHistory();
   const [buttonTitle, setButtonTitle] = React.useState("Зарегистрироваться");
+  const [isDisabled, setIsDisabled] = React.useState(false);
 
   React.useEffect(() => {
     validation.validateName();
@@ -23,6 +24,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     setButtonTitle("Регистрация...");
+    setIsDisabled(true);
 
     register(validation.inputValues.email, validation.inputValues.password, validation.inputValues.name)
       .then((res) => {
@@ -38,6 +40,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
             history.push("/movies");
             validation.resetForm();
             setButtonTitle("Зарегистрироваться");
+            setIsDisabled(false);
           })
           .catch((err) => {
             Promise.reject(err);
@@ -45,6 +48,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
       })
       .catch((err) => {
         setButtonTitle("Зарегистрироваться");
+        setIsDisabled(false);
         if (err.status === 409) {
           validation.setSubmitError(errorMessages.register.invalidEmail);
         } else {
@@ -67,6 +71,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
             type="text"
             autoComplete="off"
             required={ true }
+            disabled={ isDisabled }
             minLength="2"
             maxLength="30">
           </input>
@@ -84,6 +89,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
             id="register-email"
             name="email"
             required={ true }
+            disabled={ isDisabled }
             type="email"
             minLength="2"
             maxLength="30">
@@ -104,6 +110,7 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
             type="password"
             autoComplete="off"
             required={ true }
+            disabled={ isDisabled }
             minLength="2"
             maxLength="30">
           </input>
@@ -117,9 +124,9 @@ function Register({ setIsLoggedIn, setCurrentUser }) {
           { validation.submitError }
         </span>
         <button
-          className={ "register__submit" + (!validation.isValid ? " register__submit_disabled" : "") }
+          className={ "register__submit" + ((!validation.isValid || isDisabled) ? " register__submit_disabled" : "") }
           type="submit"
-          disabled={ validation.isValid ? false : true }>
+          disabled={ (validation.isValid && !isDisabled)? false : true }>
           { buttonTitle }
         </button>
       </form>

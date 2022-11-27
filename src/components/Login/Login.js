@@ -9,6 +9,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
   const validation = useFormWithValidation();
   const history = useHistory();
   const [buttonTitle, setButtonTitle] = React.useState("Войти");
+  const [isDisabled, setIsDisabled] = React.useState(false);
 
   React.useEffect(() => {
     validation.validateEmail();
@@ -18,6 +19,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     setButtonTitle("Вход...");
+    setIsDisabled(true);
 
     login(validation.inputValues.email, validation.inputValues.password)
       .then((res) => {
@@ -26,6 +28,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
         history.push("/movies");
         validation.resetForm();
         setButtonTitle("Войти");
+        setIsDisabled(false);
 
         getUserInfo(res.token)
           .then((user) => {
@@ -45,6 +48,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
       })
       .catch((err) => {
         setButtonTitle("Войти");
+        setIsDisabled(false);
         if (err.status === 401) {
           validation.setSubmitError(errorMessages.login.credentials);
         } else {
@@ -65,6 +69,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
             id="login-email"
             name="email"
             required={ true }
+            disabled={ isDisabled }
             type="email"
             minLength="2"
             maxLength="30">
@@ -85,6 +90,7 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
             type="password"
             autoComplete="on"
             required={ true }
+            disabled={ isDisabled }
             minLength="2"
             maxLength="30">
           </input>
@@ -98,9 +104,9 @@ function Login({ setIsLoggedIn, setCurrentUser, setSavedMovies }) {
           { validation.submitError }
         </span>
         <button
-          className={ "login__submit" + (!validation.isValid ? " login__submit_disabled" : "") }
+          className={ "login__submit" + ((!validation.isValid || isDisabled) ? " login__submit_disabled" : "") }
           type="submit"
-          disabled={ validation.isValid ? false : true }>
+          disabled={ (validation.isValid && !isDisabled) ? false : true }>
           { buttonTitle }
         </button>
       </form>
