@@ -1,5 +1,6 @@
 import "./Error.css";
 import { useHistory } from "react-router-dom";
+import { ERROR_STATUSES, ERROR_MESSAGES } from "../../utils/constants";
 
 function Error() {
   const history = useHistory();
@@ -10,9 +11,9 @@ function Error() {
 
   return(
     <div className="error">
-      <p className="error__status">404</p>
-      <p className="error__message">Страница не найдена</p>
-      <button className="error__button" onClick={ handleBackClick }>Назад</button>
+      <p className="error__status">{ ERROR_STATUSES.notFound }</p>
+      <p className="error__message">{ ERROR_MESSAGES.notFound }</p>
+      <button className="error__button" onMouseDown={ handleBackClick }>Назад</button>
     </div>
   )
 }

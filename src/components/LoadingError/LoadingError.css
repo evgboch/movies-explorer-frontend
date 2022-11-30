@@ -1,0 +1,23 @@
+.loading-error {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.loading-error__title {
+  text-align: center;
+  margin: 0;
+  padding-top: 105px;
+  padding-bottom: 25px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 767px) {
+  .loading-error {
+    max-width: 90%;
+  }
+
+  .loading-error__title {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

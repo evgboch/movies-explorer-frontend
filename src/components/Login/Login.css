@@ -6,15 +6,19 @@
 .login__form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .login__form-label {
+  width: 100%;
   color: #8B8B8B;
   font-size: 10px;
   line-height: 1.2;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  position: relative;
 }
 
 .login__form-label:last-of-type {
@@ -44,12 +48,16 @@
   color: #EE3465;
 }
 
+.login__form-input_error:focus {
+  border-color: #EE3465;
+}
+
 .login__form-error {
-    position: absolute;
-    top: 78px;
-    left: 0;
-    color: #EE3465;
-    visibility: hidden;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  color: #EE3465;
+  visibility: hidden;
 }
 
 .login__form-error_visible {
@@ -57,6 +65,7 @@
 }
 
 .login__submit {
+  width: 100%;
   margin-top: 179px;
   padding-top: 13px;
   padding-bottom: 15px;
@@ -74,6 +83,29 @@
 
 .login__submit:hover {
   opacity: 0.6;
+}
+
+.login__submit_disabled {
+  color: #C2C2C2;
+  background-color: #F8F8F8;
+}
+
+.login__submit_disabled:hover {
+  cursor: inherit;
+  opacity: 1;
+}
+
+.login__submit-error {
+  position: absolute;
+  bottom: 60px;
+  font-size: 11px;
+  line-height: 13px;
+  color: #EE3465;
+  visibility: hidden;
+}
+
+.login__submit-error_visible {
+  visibility: visible;
 }
 
 .login__container {

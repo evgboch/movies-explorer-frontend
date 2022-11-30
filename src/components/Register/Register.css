@@ -6,15 +6,18 @@
 .register__form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .register__form-label {
+  width: 100%;
   color: #8B8B8B;
   font-size: 10px;
   line-height: 1.2;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   position: relative;
 }
 
@@ -50,11 +53,11 @@
 }
 
 .register__form-error {
-    position: absolute;
-    top: 78px;
-    left: 0;
-    color: #EE3465;
-    visibility: hidden;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  color: #EE3465;
+  visibility: hidden;
 }
 
 .register__form-error_visible {
@@ -62,6 +65,7 @@
 }
 
 .register__submit {
+  width: 100%;
   margin-top: 91px;
   padding-top: 13px;
   padding-bottom: 15px;
@@ -79,6 +83,29 @@
 
 .register__submit:hover {
   opacity: 0.6;
+}
+
+.register__submit_disabled {
+  color: #C2C2C2;
+  background-color: #F8F8F8;
+}
+
+.register__submit_disabled:hover {
+  cursor: inherit;
+  opacity: 1;
+}
+
+.register__submit-error {
+  position: absolute;
+  bottom: 60px;
+  font-size: 11px;
+  line-height: 13px;
+  color: #EE3465;
+  visibility: hidden;
+}
+
+.register__submit-error_visible {
+  visibility: visible;
 }
 
 .register__container {

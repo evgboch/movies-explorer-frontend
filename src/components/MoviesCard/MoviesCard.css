@@ -3,8 +3,20 @@
   box-sizing: border-box;
 }
 
+.card__link {
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.card__link:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
 .card__cover {
   object-fit: cover;
+  width: 100%;
+  height: 151px;
 }
 
 .card__container {
